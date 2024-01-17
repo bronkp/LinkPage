@@ -1,0 +1,14 @@
+import React, { ReactNode } from 'react'
+import styles from '@/app/page.module.css'
+type Props = {
+
+    children: ReactNode;
+    demoTree:boolean;
+  };
+const TreeContainer:React.FC<Props> = ({children,demoTree}) => {
+  return (
+    <div className={demoTree?styles.demoContainer:styles.treeContainer}>{children}</div>
+  )
+}
+
+export default TreeContainer
