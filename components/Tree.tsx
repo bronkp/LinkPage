@@ -94,18 +94,35 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   useEffect(() => {
     setTree(demo);
   }, [demo]);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWidth(newWidth);
+      console.log("updating Width");
+    };
+
+    window.addEventListener("resize", updateWindowDimensions);
+    updateWindowDimensions()
+    return () => window.removeEventListener("resize", updateWindowDimensions) }else{
+      setWidth(1920)
+    }
+
+  }, []);
   return (
     <>
       {!demo&&<Navbar theme={theme}/>}
       {!loading && (
-        <TreeContainer demoTree={demo ? true : false}>
+        <TreeContainer width={width} demoTree={demo ? true : false}>
           <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
-          <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
+          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:tree.theme.base}}></div>
+          <Header demo={demo?true:false}  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
           
 
           {tree?.links.map((link, key) => (
-            <LinkItem theme={tree.theme} key={key} link={link} />
+            <LinkItem width={width} demo={demo?true:false} theme={tree.theme} key={key} link={link} />
             ))}
            
           <SpecialContainer>

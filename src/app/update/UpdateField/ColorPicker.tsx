@@ -16,7 +16,6 @@ const ColorPicker:React.FC = ({pickColor}) => {
     </div>
     </div>
 ))}
-      Color picker
   </div>
   
   )

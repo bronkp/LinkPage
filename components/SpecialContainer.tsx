@@ -4,7 +4,7 @@ type Props ={
 }
 const SpecialContainer:React.FC<Props> = ({children}) => {
   return (
-    <div>{children}</div>
+    <div style={{position:"absolute",bottom:"3em"}}>{children}</div>
   )
 }
 

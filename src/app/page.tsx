@@ -34,7 +34,7 @@ export default function Home() {
           <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
           <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
           <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
-          <div style={{marginTop:"9em"}}></div>
+          <div style={{marginTop:"16 em",height:"10em"}}></div>
           {tree?.links.map((link, key) => (
             <LinkItem theme={tree.theme} key={key} link={link} />
           ))}

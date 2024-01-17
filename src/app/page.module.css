@@ -3,18 +3,20 @@
   top: 0em;
   left: 0em;
   width: 100%;
+  min-height: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 .tree-runner{
   width:25em;
-  position: absolute;
+  position:fixed;
   z-index: -1;
   top:0;
-  height: 100vh;
+  min-height: 100%;
 }
 .demoContainer {
+  
   display: flex;
   top: 0em;
   padding-left: 10em;
@@ -33,11 +35,12 @@
   border-radius:2em;
   align-items: center;
   justify-content: center;
-  width: 15em;
+  width:60vw;
+  min-width: 40em;
   padding: 1em;
   padding-left: 3em;
   padding-right: 3em;
-  margin: 1em;
+  margin: 2em;
   background-color: #989181;
   transition: ease-in-out 400ms;
 }
@@ -57,20 +60,31 @@
   padding-top:0.4em;
  
   width:100vw;
-  position: absolute;
+  position: fixed;
   text-align: center;
   font-size: 6em;
   color: white;
 }
 .updateContainer {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: repeat(6, 1fr); */
+    grid-template-rows: auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
   background-color: #E7E5DF;
   justify-content: center;
   align-items: center;
-  display: flex;
   flex-direction: column;
   width:40em;
   min-width: 40em;
-  max-height: 100vh;
+  max-height: 100%;
+}
+.updateContainer >div{
+  margin-left: auto;
+  margin-right: auto;
 }
 .color-picker{
   display: flex;
@@ -86,13 +100,11 @@
   width: 10em;
 }
 .updateDemoContainer {
-  grid-template-columns: repeat(7, 1fr);
-grid-template-rows: repeat(1, 1fr);
+  height: 100%;
+grid-template-rows:auto;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
   gap: 10em;
-contain:contain;
-  width: 100%;
   display: grid ;
   flex-direction: row;
 }
@@ -115,11 +127,16 @@ contain:contain;
   background-color: rgb(250, 253, 255);
 }
 .linkBox button {
+  display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
 top:-1.5em;
+padding: 0em;
 right:-1.3em;
+min-width:2em;
+min-height:2em;
+max-height: 2em;
   border-radius: 100%;
   background-color: #E7BB41;
   font-size: larger;

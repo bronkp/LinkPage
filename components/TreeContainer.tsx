@@ -4,10 +4,11 @@ type Props = {
 
     children: ReactNode;
     demoTree:boolean;
+    width:number
   };
-const TreeContainer:React.FC<Props> = ({children,demoTree}) => {
+const TreeContainer:React.FC<Props> = ({children,demoTree,width}) => {
   return (
-    <div className={demoTree?styles.demoContainer:styles.treeContainer}>{children}</div>
+    <div style={{paddingLeft:0}} className={demoTree?styles.demoContainer:styles.treeContainer}>{children}</div>
   )
 }
 

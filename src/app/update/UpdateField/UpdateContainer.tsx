@@ -293,27 +293,47 @@ const UpdateContainer = () => {
     edittedPage.theme=theme
     setPage(edittedPage)
   }
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWidth(newWidth);
+      console.log("updating Width");
+    };
+
+    window.addEventListener("resize", updateWindowDimensions);
+    updateWindowDimensions()
+    return () => window.removeEventListener("resize", updateWindowDimensions) }else{
+      setWidth(1920)
+    }
+
+  }, []);
   useEffect(() => {
     getUserPage();
   }, []);
   return (
     <>
-      <div style={{position:"absolute",top:0,left:0,overflow:"hidden", maxWidth:"100vw"}} className={styles.updateDemoContainer}>
+      <div style={{
+        position:"absolute",top:0,left:0, minHeight:"100%",
+  gridTemplateColumns:width>800? "repeat(7, 1fr)":"repeat(1, 1fr)",
+        maxWidth:width>800?"100%":width,
+        }} className={styles.updateDemoContainer}>
         <div style={{zIndex:15}} className={styles.updateContainer}>
           <ColorPicker pickColor={pickColor}/>
+          {width}
           <div className={styles.updateContainerBackground}></div>
           <div
             style={
               selectedImage
                 ? {
-                    borderWidth: "14em",
-                    borderColor: "yellow",
 
                     backgroundImage: `url(${selectedImage})`,
                     marginTop: "1em",
                   }
                 : {
-                    borderWidth: "4em",
                     borderColor: "#E7BB41",
                     marginTop: "1em",
                   }
@@ -465,7 +485,7 @@ const UpdateContainer = () => {
 
           <p style={{ color: "red" }}>{error}</p>
         </div>{" "}
-        <div style={{display:"flex", justifyContent:"center",alignItems:"center"}}>
+        <div style={{height:"100%",display:"flex", justifyContent:"center",alignItems:"center"}}>
 
         {!loading && <Tree demo={page} />}{" "}
         </div>

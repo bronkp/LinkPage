@@ -74,7 +74,7 @@ router.push("/update")
             backgroundColor:theme?.link,
             color: theme?.text,
             textDecoration: "none",
-            position: "absolute",
+            position: "fixed",
           }}
           href={`/login`}
         >
@@ -83,7 +83,7 @@ router.push("/update")
       )}
     {newAccount&& <>
           <p
-            style={{ cursor: "pointer",color:"white"}}
+            style={{ position:"fixed", cursor: "pointer",color:"white"}}
             onClick={() => {
               createPage();
             }}
@@ -92,17 +92,17 @@ router.push("/update")
           </p>
         </>}
       {loggedIn && !newAccount &&
-        <div className={styles.navbar}>
+        <div  className={styles.navbar}>
           <p
-            style={{ cursor: "pointer",zIndex:10 }}
+            style={{ top:"1em", position:"fixed", cursor: "pointer",zIndex:10 }}
             onClick={() => {
               handleSignOut();
             }}
           >
             Signout
           </p>
-          <a style={{zIndex:10}} href="/update">Edit</a>
-          <a style={{zIndex:10}}  href={`/page/${page}`}>Page</a>
+          <a style={{top:"4em", position:"fixed",zIndex:10}} href="/update">Edit</a>
+          <a style={{top:"6em", position:"fixed",zIndex:10}}  href={`/page/${page}`}>Page</a>
         </div>
       }
     </>
