@@ -28,6 +28,7 @@
   padding: 1em;
 }
 .linkItem {
+  
   display: flex;
   border-radius:2em;
   align-items: center;

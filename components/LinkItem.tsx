@@ -1,9 +1,9 @@
 import React from 'react'
-import { LinkType } from '../types/types'
+import { ColorPallet, LinkType } from '../types/types'
 import styles from '@/app/page.module.css';
 type LinkItemProps ={
     link:LinkType;
-    theme:any;
+    theme:ColorPallet;
 }
 const LinkItem:React.FC<LinkItemProps> = ({link,theme}) => {
   return (

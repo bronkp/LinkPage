@@ -102,9 +102,12 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
           <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
           <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
           <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
+          
+
           {tree?.links.map((link, key) => (
             <LinkItem theme={tree.theme} key={key} link={link} />
-          ))}
+            ))}
+           
           <SpecialContainer>
             {tree?.special_links?.map((special, key) => (
               <Special key={key} special={special} />

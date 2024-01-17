@@ -1,5 +1,10 @@
 const colorful = {
-    borderRadius:"100%"
+    base:"#CE5374",
+    text:"white",
+    link:"#9C0D38",
+    runner:"#DDF0FF",
+    headerBack:"#CE5374"
+
   }
   const tangerine = {
     base:"#EFECCA",

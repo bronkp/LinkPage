@@ -94,7 +94,7 @@ router.push("/update")
       {loggedIn && !newAccount &&
         <div className={styles.navbar}>
           <p
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer",zIndex:10 }}
             onClick={() => {
               handleSignOut();
             }}

@@ -8,6 +8,7 @@ import SpecialContainer from "../../components/SpecialContainer";
 import Special from "../../components/Special";
 import Navbar from "../../components/Navbar";
 import AuthContextProvider from "../../context/AuthContext";
+import { themes } from "../../utils/themes";
 
 export default function Home() {
   const tree = {
@@ -21,23 +22,28 @@ export default function Home() {
      
    
     ],
-    pfp:""
+    special_links:[],
+    pfp:"",
+    theme:themes[0]
   };
   return (
     <>
     <AuthContextProvider>
     <Navbar/>
-    <TreeContainer  demoTree={false}>
-      <Header pfp={""} name={tree.name} />
-      {tree.links.map((link) => (
-        <LinkItem link={link} />
-        ))}
-      <SpecialContainer>
-        {tree.specials.map((special)=>(
-          <Special special={special}/>
+    <TreeContainer demoTree={false}>
+          <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
+          <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
+          <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
+          <div style={{marginTop:"9em"}}></div>
+          {tree?.links.map((link, key) => (
+            <LinkItem theme={tree.theme} key={key} link={link} />
           ))}
-      </SpecialContainer>
-    </TreeContainer></AuthContextProvider>
+          <SpecialContainer>
+            {tree?.special_links?.map((special, key) => (
+              <Special key={key} special={special} />
+            ))}
+          </SpecialContainer>
+        </TreeContainer></AuthContextProvider>
           </>
   );
 }
