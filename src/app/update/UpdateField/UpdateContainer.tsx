@@ -7,6 +7,7 @@ import Tree from "../../../../components/Tree";
 import GridLayout from "react-grid-layout";
 import { MdDelete, MdOutlineDriveFolderUpload } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import ColorPicker from "./ColorPicker";
 
 const UpdateContainer = () => {
   const router = useRouter();
@@ -58,6 +59,7 @@ const UpdateContainer = () => {
           url: page?.url,
           links: page?.links,
           pfp: path,
+          theme:page?.theme,
         })
         .eq("email", email);
       if (error) updateError = "An Error Has Occured";
@@ -84,8 +86,10 @@ const UpdateContainer = () => {
   //Retrieves inital page layout
   const getUserPage = async () => {
     //gets user from client context
+    
     const user = await context.client!.auth.getUser();
     //retrieves email from response
+    console.log('user',user)
     let resEmail = user?.data?.user?.email;
     //sets email for session
     setEmail(resEmail!);
@@ -95,6 +99,7 @@ const UpdateContainer = () => {
       .client!.from("TreePages")
       .select()
       .eq("email", resEmail);
+      console.log(data,error,resEmail)
     //Inital page layour
     let page: TreeType = data?.[0];
     setPage(page);
@@ -116,6 +121,7 @@ const UpdateContainer = () => {
       setPage(edittedPage);
       setSelectedImage(url?.data.publicUrl);
       setExists(imageExists(url?.data.publicUrl))
+      console.log(edittedPage,"here")
     }
     setInitLinkOrder([...page.links]);
     setOgState(cords);
@@ -282,13 +288,19 @@ const UpdateContainer = () => {
       return false
     }}
   }
+  const pickColor = (theme)=>{
+    let edittedPage = {...page}
+    edittedPage.theme=theme
+    setPage(edittedPage)
+  }
   useEffect(() => {
     getUserPage();
   }, []);
   return (
     <>
-      <div className={styles.updateDemoContainer}>
-        <div className={styles.updateContainer}>
+      <div style={{position:"absolute",top:0,left:0,overflow:"hidden", maxWidth:"100vw"}} className={styles.updateDemoContainer}>
+        <div style={{zIndex:15}} className={styles.updateContainer}>
+          <ColorPicker pickColor={pickColor}/>
           <div className={styles.updateContainerBackground}></div>
           <div
             style={
@@ -396,6 +408,9 @@ const UpdateContainer = () => {
                       />
                       {/* {cord.i} */}
                       <input
+                       onMouseDown={(e) => {
+                        e.stopPropagation();
+                      }}
                         value={page!.links?.[getIndex(cord.i)].link}
                         maxLength={100}
                         onChange={(e) =>
@@ -450,7 +465,10 @@ const UpdateContainer = () => {
 
           <p style={{ color: "red" }}>{error}</p>
         </div>{" "}
+        <div style={{display:"flex", justifyContent:"center",alignItems:"center"}}>
+
         {!loading && <Tree demo={page} />}{" "}
+        </div>
       </div>
     </>
   );

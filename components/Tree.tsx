@@ -9,17 +9,55 @@ import LinkItem from "./LinkItem";
 import Special from "./Special";
 import SpecialContainer from "./SpecialContainer";
 import TreeContainer from "./TreeContainer";
-import { TreeType } from "../types/types";
+import { ColorPallet, TreeType } from "../types/types";
+import Navbar from "./Navbar";
+import styles from '@/app/page.module.css';
 type TreeProps = {
   demo?: TreeType;
+  setTheme?:React.SetStateAction<ColorPallet>;
 };
-const Tree: React.FC<TreeProps> = ({ demo }) => {
+const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   const [tree, setTree] = useState<TreeType>();
+  
   const [loading, setLoading] = useState(true);
   const [pfp, setPFP] = useState("");
   let context = useAuthContext();
   const params = useParams();
   const { uid } = params;
+  const colorful = {
+    base:"#CE5374",
+    text:"white",
+    link:"#9C0D38",
+    runner:"#DDF0FF"
+  }
+  const tangerine = {
+    base:"#EFECCA",
+    text:"black",
+    link:"#F7FF58",
+    runner:"#FF934F",
+    headerBack:"#5E565A"
+  }
+  const blau = {
+    base:"#4C7081",
+    text:"white",
+    link:"#385F71",
+    runner:"#F5F0F6",
+    headerBack:"#2B4162"
+  }
+  const pink ={
+    base:"#D99AC5",
+    text:"white",
+    link:"#7FE3FF",
+    runner:"#DCCDE8",
+    headerBack:"#B37BA4"
+  }
+  const green = {
+    base:"#5DA28C",
+    text:"white",
+    link:"#484349",
+    runner:"#F7F0F0",
+    headerBack:"#109648"
+  }
   const fetchData = async () => {
     try {
       //@ts-ignore
@@ -51,16 +89,21 @@ const Tree: React.FC<TreeProps> = ({ demo }) => {
 
     console.log(demo);
   }, []);
+  let theme = green
+  const themes = []
   useEffect(() => {
     setTree(demo);
   }, [demo]);
   return (
     <>
+      {!demo&&<Navbar theme={theme}/>}
       {!loading && (
         <TreeContainer demoTree={demo ? true : false}>
-          <Header pfp={tree.pfp} name={tree!.name} />
+          <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
+          <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
+          <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
           {tree?.links.map((link, key) => (
-            <LinkItem key={key} link={link} />
+            <LinkItem theme={tree.theme} key={key} link={link} />
           ))}
           <SpecialContainer>
             {tree?.special_links?.map((special, key) => (

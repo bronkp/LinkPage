@@ -2,13 +2,14 @@ import React from 'react'
 import { LinkType } from '../types/types'
 import styles from '@/app/page.module.css';
 type LinkItemProps ={
-    link:LinkType
+    link:LinkType;
+    theme:any;
 }
-const LinkItem:React.FC<LinkItemProps> = ({link}) => {
+const LinkItem:React.FC<LinkItemProps> = ({link,theme}) => {
   return (
-    <div className={styles.linkItem}>
+    <div style={{backgroundColor:theme.link}}className={styles.linkItem}>
 
-    <a  href={link.link}>{link.name}</a>
+    <a style={{color:theme.text}}  href={link.link}>{link.name}</a>
     </div>
   )
 }

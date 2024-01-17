@@ -1,5 +1,14 @@
 html{
 
 }
-body{  background-color: #393E41;
+body{  
+    background-color: #393E41;
+    background-image: linear-gradient( #788389,#393E41);
+    background-size: contain;
+    background-repeat: no-repeat;
+/*    
+    background-position: center;
+    background-image:
+    
+    background-repeat: no-repeat; */
 }

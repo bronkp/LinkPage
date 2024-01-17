@@ -13,6 +13,7 @@ export type TreeType = {
     special_links:SpecialType[],
     url:string,
     pfp:string,
+    theme:ColorPallet,
 
 }
 export type Cord ={
@@ -23,3 +24,10 @@ export type Cord ={
     h: number;
 }
 
+export type ColorPallet = {
+    base:string;
+    text:string;
+    link:string;
+    runner:string;
+    headerBack:string;
+}

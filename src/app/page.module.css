@@ -7,10 +7,17 @@
   align-items: center;
   flex-direction: column;
 }
+.tree-runner{
+  width:25em;
+  position: absolute;
+  z-index: -1;
+  top:0;
+  height: 100vh;
+}
 .demoContainer {
   display: flex;
   top: 0em;
-  left: 0em;
+  padding-left: 10em;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -22,21 +29,36 @@
 }
 .linkItem {
   display: flex;
-  border-radius: 1em;
+  border-radius:2em;
   align-items: center;
   justify-content: center;
   width: 15em;
   padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
   margin: 1em;
-  background-color: #797367;
+  background-color: #989181;
+  transition: ease-in-out 400ms;
 }
 .linkItem a {
+  
   text-decoration: none;
   font-size: 3em;
   color: #E7E5DF;
 }
+.linkItem:hover{
+  transition: ease-in-out 400ms;
+
+  background-color: #797367;
+}
 .header {
-  font-size: 10em;
+  top:0;
+  padding-top:0.4em;
+ 
+  width:100vw;
+  position: absolute;
+  text-align: center;
+  font-size: 6em;
   color: white;
 }
 .updateContainer {
@@ -45,11 +67,17 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  border-radius: 1em;
-  width: 50em;
+  width:40em;
   min-width: 40em;
+  max-height: 100vh;
 }
-
+.color-picker{
+  display: flex;
+  flex-direction: column;
+  left: 1em;
+  top:4em;
+  position:absolute
+}
 .updateContainer input {
   margin: 0.4em;
   padding: 0.6em;
@@ -57,11 +85,14 @@
   width: 10em;
 }
 .updateDemoContainer {
+  grid-template-columns: repeat(7, 1fr);
+grid-template-rows: repeat(1, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
   gap: 10em;
-  justify-content: center;
-  align-items: center;
+contain:contain;
   width: 100%;
-  display: flex;
+  display: grid ;
   flex-direction: row;
 }
 .linkBox {
@@ -138,6 +169,7 @@ flex-direction: column;
 color: black;
 }
 .pfp{
+  margin-top: 10em;
    background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

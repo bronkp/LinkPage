@@ -5,8 +5,11 @@ import { useAuthContext } from "../context/AuthContext";
 import styles from "@/app/page.module.css";
 import { useRouter } from "next/navigation";
 import { UserResponse } from "@supabase/supabase-js";
-
-const Navbar = () => {
+import { ColorPallet } from "../types/types";
+type NavbarProps = {
+    theme?:ColorPallet
+}
+const Navbar:React.FC<NavbarProps> = ({theme}) => {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -63,8 +66,13 @@ router.push("/update")
     <>
       {!loggedIn && !loading && (
         <a
+        
           style={{
-            color: "white",
+            zIndex:10,
+            borderRadius:"1em",
+            padding:"0.7em",
+            backgroundColor:theme?.link,
+            color: theme?.text,
             textDecoration: "none",
             position: "absolute",
           }}
@@ -93,8 +101,8 @@ router.push("/update")
           >
             Signout
           </p>
-          <a href="/update">Edit</a>
-          <a href={`/page/${page}`}>Page</a>
+          <a style={{zIndex:10}} href="/update">Edit</a>
+          <a style={{zIndex:10}}  href={`/page/${page}`}>Page</a>
         </div>
       }
     </>
