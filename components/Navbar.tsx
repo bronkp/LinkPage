@@ -8,7 +8,7 @@ import { UserResponse } from "@supabase/supabase-js";
 import { ColorPallet } from "../types/types";
 import { themes } from "../utils/themes";
 type NavbarProps = {
-    theme?:ColorPallet
+    theme?:string
 }
 const Navbar:React.FC<NavbarProps> = ({theme}) => {
   const router = useRouter();
@@ -38,23 +38,23 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
     }
     setLoading(false);
   };
-  const createPage = async() => {
-    console.log('id', user?.data.user?.id.length)
-    let supa = context.client;
-   let res= await supa
-      ?.from("TreePages")
-      .insert({
-        name: "",
-        special_links: [],
-        links: [],
-        url: user?.data.user?.id,
-        pfp:user?.data.user?.id+"/pfp.png",
-        email:user?.data.user?.email,
-        theme:themes[0]
-      });
-console.log(res)
-router.push("/update")
-  };
+  // const createPage = async() => {
+  //   console.log('id', user?.data.user?.id.length)
+  //   let supa = context.client;
+  //  let res= await supa
+  //     ?.from("TreePages")
+  //     .insert({
+  //       name: "",
+  //       special_links: [],
+  //       links: [],
+  //       url: user?.data.user?.id,
+  //       pfp:user?.data.user?.id+"/pfp.png",
+  //       email:user?.data.user?.email,
+  //       theme:themes[0]
+  //     });
+// console.log(res)
+// router.push("/update")
+//   };
   useEffect(() => {
     checkuser();
   }, []);
@@ -72,8 +72,8 @@ router.push("/update")
             zIndex:10,
             borderRadius:"1em",
             padding:"0.7em",
-            backgroundColor:theme?.link,
-            color: theme?.text,
+            backgroundColor:themes[theme?theme:"green"]?.link,
+            color: themes[theme?theme:"green"]?.text,
             textDecoration: "none",
             position: "fixed",
           }}
@@ -82,7 +82,7 @@ router.push("/update")
           Log In
         </a>
       )}
-    {newAccount&& <>
+    {/* {newAccount&& <>
           <p
             style={{ position:"fixed", cursor: "pointer",color:"white"}}
             onClick={() => {
@@ -91,7 +91,7 @@ router.push("/update")
           >
             Create Page
           </p>
-        </>}
+        </>} */}
       {loggedIn && !newAccount &&
         <div  className={styles.navbar}>
           <p

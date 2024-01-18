@@ -12,13 +12,13 @@ import TreeContainer from "./TreeContainer";
 import { ColorPallet, TreeType } from "../types/types";
 import Navbar from "./Navbar";
 import styles from '@/app/page.module.css';
+import { themes } from "../utils/themes";
 type TreeProps = {
   demo?: TreeType;
   setTheme?:React.SetStateAction<ColorPallet>;
 };
 const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   const [tree, setTree] = useState<TreeType>();
-  
   const [loading, setLoading] = useState(true);
   const [pfp, setPFP] = useState("");
   let context = useAuthContext();
@@ -89,8 +89,6 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
 
     console.log(demo);
   }, []);
-  let theme = green
-  const themes = []
   useEffect(() => {
     setTree(demo);
   }, [demo]);
@@ -113,16 +111,16 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   }, []);
   return (
     <>
-      {!demo&&<Navbar theme={theme as ColorPallet}/>}
+      {!demo&&<Navbar theme={tree?.theme}/>}
       {!loading && (
         <TreeContainer width={width} demoTree={demo ? true : false}>
-          <div  style={{backgroundColor:tree?.theme.runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:tree!.theme.base}}></div>
+          <div  style={{backgroundColor:themes[tree?.theme].runner}} className={styles["tree-runner"]}></div>
+          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:themes[tree?.theme].base}}></div>
           <Header width={width} demo={demo?true:false}  theme={tree!.theme} pfp={tree!.pfp} name={tree!.name} />
           
 
           {tree?.links.map((link, key) => (
-            <LinkItem width={width} demo={demo?true:false} theme={tree.theme} key={key} link={link} />
+            <LinkItem width={width} demo={demo?true:false} theme={themes[tree.theme]} key={key} link={link} />
             ))}
            
           {/* <SpecialContainer>

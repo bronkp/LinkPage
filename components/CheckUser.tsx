@@ -18,7 +18,7 @@ const CheckUser:React.FC = () => {
         url: user?.id,
         pfp:user?.id+"/pfp.png",
         email:user?.email,
-        theme:themes[0]
+        theme:"green"
       });
 console.log(res)
 

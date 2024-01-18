@@ -1,3 +1,5 @@
+import { color } from "framer-motion"
+
 const colorful = {
     base:"#F79D5C",
     text:"white",
@@ -53,5 +55,7 @@ const gray = {
   linkStyle:"bordered",
   demo:"#D7CEB2"
 }
-export const themes = [green,gray,black,tangerine,colorful,blau]
+
+export const themes ={"green":green,"gray":gray,"black":black,"tangerine":tangerine,"colorful":colorful,"blau":blau}
+  
 

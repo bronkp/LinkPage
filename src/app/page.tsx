@@ -27,7 +27,7 @@ export default function Home() {
     ],
     special_links:[],
     pfp:"",
-    theme:themes[Math.floor(Math.random()*themes.length)]
+    theme:Object.keys(themes)[Math.floor(Math.random()*Object.keys(themes).length)]
   };
   const [width, setWidth] = useState(0);
 
@@ -56,12 +56,12 @@ export default function Home() {
       
     <TreeContainer width={width} demoTree={false}>
       <CheckUser/>
-          <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
-          <Header width={width} demo={true}  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
+          <div  style={{backgroundColor:themes[tree.theme].runner}} className={styles["tree-runner"]}></div>
+          <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:themes[tree.theme].base}}></div>
+          <Header width={width} demo={true}  theme={themes[tree.theme]} pfp={tree.pfp} name={tree!.name} />
           <div style={{marginTop:"16 em",height:"10em"}}></div>
           {tree?.links.map((link, key) => (
-            <LinkItem demo={false} width={width} theme={tree.theme} key={key} link={link} />
+            <LinkItem demo={false} width={width} theme={themes[tree.theme]} key={key} link={link} />
           ))}
           {/* <SpecialContainer>
             {tree?.special_links?.map((special, key) => (

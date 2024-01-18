@@ -13,7 +13,7 @@ export type TreeType = {
     special_links:SpecialType[],
     url:string,
     pfp:string,
-    theme:ColorPallet,
+    theme:string,
 
 }
 export type Cord ={

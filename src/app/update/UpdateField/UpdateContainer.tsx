@@ -287,7 +287,7 @@ const UpdateContainer = () => {
       return false
     }}
   }
-  const pickColor = (theme:ColorPallet)=>{
+  const pickColor = (theme:string)=>{
     let edittedPage = {...page}
     edittedPage.theme=theme
     setPage(edittedPage as TreeType)

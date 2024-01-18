@@ -8,10 +8,10 @@ const ColorPicker:React.FC<ColorPickerProps> = ({pickColor}) => {
   return (
  
   <div className={styles["color-picker"]}>
-{themes.map((theme,key)=>(
+{Object.keys(themes).map((theme,key)=>(
     <div key={key} onClick={()=>pickColor(theme)} style={{display:"flex",justifyContent:"center",borderRadius:"100%",margin:"1em", alignItems:"center" , width:"2em",height:"2em", backgroundColor:"white"}}>
-
-    <div style={{borderWidth:"1em",borderColor:"white",borderRadius:"100%",backgroundColor:theme.demo,width:"1.4em",height:"1.4em", }}>
+{/* @ts-ignore */}
+    <div style={{borderWidth:"1em",borderColor:"white",borderRadius:"100%",backgroundColor:themes[theme].demo,width:"1.4em",height:"1.4em", }}>
         
     </div>
     </div>
