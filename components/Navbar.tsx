@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import styles from "@/app/page.module.css";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UserResponse } from "@supabase/supabase-js";
 import { ColorPallet } from "../types/types";
 import { themes } from "../utils/themes";
@@ -11,10 +11,11 @@ type NavbarProps = {
     theme?:string
 }
 const Navbar:React.FC<NavbarProps> = ({theme}) => {
-  const router = useRouter();
+  const router = usePathname()
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState("");
+  const [hidePage,setHidePage]=useState(true)
   const [newAccount, setNewAccount] = useState(false);
   const [user, setUser] = useState<UserResponse>();
   let context = useAuthContext();
@@ -28,7 +29,8 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
         ?.from("TreePages")
         .select()
         .eq("email", res?.data.user?.email);
-      if (url?.data?.[0]) {
+        if (url?.data?.[0]) {
+        router.split("/")[2]!=url?.data?.[0].url&&setHidePage(false)
         setPage(url?.data?.[0].url);
       } else {
         setNewAccount(true);
@@ -103,7 +105,7 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
             Signout
           </p>
           <a style={{zIndex:10}} href="/update">Edit</a>
-          <a style={{zIndex:10}}  href={`/page/${page}`}>Page</a>
+         {!hidePage&& <a style={{zIndex:10}}  href={`/page/${page}`}>My Page</a>}
         </div>
       }
     </>
