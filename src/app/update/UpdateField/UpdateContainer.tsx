@@ -316,6 +316,8 @@ const UpdateContainer = () => {
   return (
     <>
       <div style={{
+  gap:page?.links.length?"10em":"30em",
+
         position:"absolute",top:0,left:0, minHeight:"100%",
   gridTemplateColumns:width>800? "repeat(7, 1fr)":"repeat(1, 1fr)",
         maxWidth:width>800?"100%":width,
@@ -388,7 +390,7 @@ const UpdateContainer = () => {
               className={styles.gridContainer}
             >
               <GridLayout
-                style={{ top: "-6em" }}
+                style={{ top: "-6em",zIndex:0 }}
                 compactType="vertical"
                 onDragStart={(e) => setOgState(e)}
                 onDragStop={(e) => {
@@ -412,8 +414,12 @@ const UpdateContainer = () => {
                     className={styles.linkBox}
                   >
                     {/* uses getIndex to find the location of value */}
-                    <div className={styles.vStack}>
+                    <div style={{zIndex:100}} className={styles.vStack}>
                       <input
+                       id={`${i}title`}
+                      onTouchStart={(e)=>{
+                        document.getElementById(`${i}title`)?.focus()
+                      }}
                         onMouseDown={(e) => {
                           e.stopPropagation();
                         }}
@@ -426,9 +432,14 @@ const UpdateContainer = () => {
                       />
                       {/* {cord.i} */}
                       <input
+                       id={`${i}link`}
+                       onTouchStart={(e)=>{
+                         document.getElementById(`${i}link`)?.focus()
+                       }}
                        onMouseDown={(e) => {
                         e.stopPropagation();
                       }}
+                      style={{zIndex:11110,position: "relative"}}
                         value={page!.links?.[getIndex(cord.i)].link}
                         maxLength={100}
                         onChange={(e) =>
@@ -441,7 +452,7 @@ const UpdateContainer = () => {
                     onTouchEnd={(e)=>{
 
                       deleteLink(cord.i);
-                      e.stopPropagation()
+                      
                     }}
                     style={{zIndex:10000}}
                     type="button"

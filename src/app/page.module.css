@@ -100,11 +100,10 @@
 .updateDemoContainer {
   height: 100%;
 grid-template-rows:auto;
-grid-column-gap: 0px;
+grid-column-gap: auto;
 grid-row-gap: 0px;
-  gap: 10em;
   display: grid ;
-  flex-direction: row;
+  width: 100%;
 }
 .linkBox {
   border-radius: 1em;
@@ -166,6 +165,7 @@ flex-direction: column;
 }
 
 .vStack{
+  position: relative;
   display: flex;
   flex-direction: column;
 }

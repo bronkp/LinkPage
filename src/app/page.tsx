@@ -7,9 +7,11 @@ import LinkItem from "../../components/LinkItem";
 import SpecialContainer from "../../components/SpecialContainer";
 import Special from "../../components/Special";
 import Navbar from "../../components/Navbar";
-import AuthContextProvider from "../../context/AuthContext";
+import AuthContextProvider, { useAuthContext } from "../../context/AuthContext";
 import { themes } from "../../utils/themes";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import CheckUser from "../../components/CheckUser";
 
 export default function Home() {
   const tree = {
@@ -20,8 +22,8 @@ export default function Home() {
       { name: "Demo", link: "/page/Bronkp" }
     ],
     specials: [
-     
-   
+      
+      
     ],
     special_links:[],
     pfp:"",
@@ -45,10 +47,15 @@ export default function Home() {
     }
 
   }, []);
+  
   return (
     <>
     <AuthContextProvider>
+      
+      
+      
     <TreeContainer width={width} demoTree={false}>
+      <CheckUser/>
           <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
           <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
           <Header width={width} demo={true}  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
