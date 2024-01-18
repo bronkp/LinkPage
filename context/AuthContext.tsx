@@ -7,7 +7,7 @@ type ClientType = {
 
 const AuthContext = createContext<ClientType>({client:null});
 
-function AuthContextProvider({ children }) {
+function AuthContextProvider({ children}: { children: React.ReactNode }) {
   const supabase = createClientComponentClient()
   let sharedState = {client:supabase}
  

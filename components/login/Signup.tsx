@@ -35,7 +35,7 @@ if(password==confirmPassword){
      // router.push('/')
     }
   return (
-    <div style={{height:accountError|message?"22em":"19em"}} className={styles['login-box']}>
+    <div style={{height:accountError||message?"22em":"19em"}} className={styles['login-box']}>
         Email
         <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email'>
         </input>

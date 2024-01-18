@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useAuthContext } from '../context/AuthContext'
 import { useRouter } from 'next/navigation';
 import { themes } from '../utils/themes';
+import { User } from '@supabase/supabase-js';
 
 const CheckUser:React.FC = () => {
   let router = useRouter()
   let context = useAuthContext()
-  const createPage = async(user) => {
+  const createPage = async(user:User) => {
     console.log(user,'user')
     let supa = context.client;
    let res= await supa
