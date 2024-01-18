@@ -247,6 +247,7 @@ width:10em;
   
 }
 .login-box{
+  text-align: center;
   position: absolute;
   top:1em;
   justify-content: center;
@@ -258,7 +259,6 @@ width:10em;
   padding-bottom: 1em;
   padding-right: 6em;
   padding-left: 6em;
-  height:10em;
   flex-direction: column;
 }
 .login-box input{
@@ -276,7 +276,7 @@ font-size: 2em;
 }
 .login-box button:disabled{
   transition: 300ms;
-  cursor:wait;
+  cursor:auto;
   background-color: rgb(165, 164, 164);
 }
 .navbar{

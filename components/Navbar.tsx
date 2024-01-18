@@ -72,8 +72,8 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
             zIndex:10,
             borderRadius:"1em",
             padding:"0.7em",
-            backgroundColor:themes[theme?theme:"green"]?.link,
-            color: themes[theme?theme:"green"]?.text,
+            backgroundColor:themes[theme?theme as keyof typeof themes:"green"]?.link,
+            color: themes[theme?theme as keyof typeof themes:"green" ]?.text,
             textDecoration: "none",
             position: "fixed",
           }}

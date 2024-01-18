@@ -109,18 +109,19 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
     }
 
   }, []);
+  let treeTheme = tree?.theme as keyof typeof themes
   return (
     <>
       {!demo&&<Navbar theme={tree?.theme}/>}
       {!loading && (
         <TreeContainer width={width} demoTree={demo ? true : false}>
-          <div  style={{backgroundColor:themes[tree?.theme].runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:themes[tree?.theme].base}}></div>
-          <Header width={width} demo={demo?true:false}  theme={tree!.theme} pfp={tree!.pfp} name={tree!.name} />
+          <div  style={{backgroundColor:themes[treeTheme].runner}} className={styles["tree-runner"]}></div>
+          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:themes[treeTheme].base}}></div>
+          <Header width={width} demo={demo?true:false}  theme={treeTheme} pfp={tree!.pfp} name={tree!.name} />
           
 
           {tree?.links.map((link, key) => (
-            <LinkItem width={width} demo={demo?true:false} theme={themes[tree.theme]} key={key} link={link} />
+            <LinkItem width={width} demo={demo?true:false} theme={themes[treeTheme]} key={key} link={link} />
             ))}
            
           {/* <SpecialContainer>

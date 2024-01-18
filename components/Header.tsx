@@ -4,7 +4,7 @@ import { ColorPallet } from "../types/types";
 type HeaderProps = {
   name: string;
   pfp: string;
-  theme: ColorPallet;
+  theme: string;
   demo: Boolean;
   width: number;
 };
@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
         style={{
           width: width < 800 ? width : "",
           marginTop: width > 800 ? "0em" : demo ? "-1.9em" : "0em",
-          backgroundColor: theme.headerBack,
+          backgroundColor: "none",
           position: width > 800 ? "fixed" : demo ? "relative" : "fixed",
         }}
         className={styles.header}

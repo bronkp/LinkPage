@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
 import TreeContainer from "../../components/TreeContainer";
@@ -19,56 +19,83 @@ export default function Home() {
     links: [
       { name: "Login", link: "/login" },
       { name: "Me", link: "https://rorysaxton.com/" },
-      { name: "Demo", link: "/page/Bronkp" }
+      { name: "Demo", link: "/page/Bronkp" },
     ],
-    specials: [
-      
-      
-    ],
-    special_links:[],
-    pfp:"",
-    theme:Object.keys(themes)[Math.floor(Math.random()*Object.keys(themes).length)]
+    specials: [],
+    special_links: [],
+    pfp: "",
+    theme:
+      Object.keys(themes)[
+        Math.floor(Math.random() * Object.keys(themes).length)
+      ],
   };
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      const updateWindowDimensions = () => {
+        const newWidth = window.innerWidth;
+        setWidth(newWidth);
+        console.log("updating Width");
+      };
 
-    const updateWindowDimensions = () => {
-      const newWidth = window.innerWidth;
-      setWidth(newWidth);
-      console.log("updating Width");
-    };
-
-    window.addEventListener("resize", updateWindowDimensions);
-    updateWindowDimensions()
-    return () => window.removeEventListener("resize", updateWindowDimensions) }else{
-      setWidth(1920)
+      window.addEventListener("resize", updateWindowDimensions);
+      updateWindowDimensions();
+      return () => window.removeEventListener("resize", updateWindowDimensions);
+    } else {
+      setWidth(1920);
     }
-
   }, []);
-  
+
   return (
     <>
-    <AuthContextProvider>
-      
-      
-      
-    <TreeContainer width={width} demoTree={false}>
-      <CheckUser/>
-          <div  style={{backgroundColor:themes[tree.theme].runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:themes[tree.theme].base}}></div>
-          <Header width={width} demo={true}  theme={themes[tree.theme]} pfp={tree.pfp} name={tree!.name} />
-          <div style={{marginTop:"16 em",height:"10em"}}></div>
+      <AuthContextProvider>
+        <TreeContainer width={width} demoTree={false}>
+          <CheckUser />
+          <div
+            style={{
+              backgroundColor: themes[tree.theme as keyof typeof themes].runner,
+            }}
+            className={styles["tree-runner"]}
+          ></div>
+          <div
+            style={{
+              top: 0,
+              zIndex: "-2",
+              position: "absolute",
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: themes[tree.theme as keyof typeof themes].base,
+            }}
+          ></div>
+          <Header
+            width={width}
+            demo={true}
+            theme={tree.theme }
+            pfp={tree.pfp}
+            name={tree!.name}
+          />
+          <div style={{ marginTop: "16 em", height: "10em" }}></div>
           {tree?.links.map((link, key) => (
-            <LinkItem demo={false} width={width} theme={themes[tree.theme]} key={key} link={link} />
+            <LinkItem
+              demo={false}
+              width={width}
+              theme={themes[tree.theme as keyof typeof themes]}
+              key={key}
+              link={link}
+            />
           ))}
           {/* <SpecialContainer>
             {tree?.special_links?.map((special, key) => (
               <Special key={key} special={special} />
             ))}
           </SpecialContainer> */}
-        </TreeContainer></AuthContextProvider>
-          </>
+        </TreeContainer>
+      </AuthContextProvider>
+    </>
   );
 }
