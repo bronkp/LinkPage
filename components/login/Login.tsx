@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     const { data, error } = await context.client!.auth.resetPasswordForEmail(
       email,
       {
-        redirectTo: "http://localhost:3000/password_change",
+        redirectTo: "https://link-page-git-main-bronkp.vercel.app/password_change",
       }
     );
     console.log(data,error)
