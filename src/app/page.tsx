@@ -25,19 +25,36 @@ export default function Home() {
     ],
     special_links:[],
     pfp:"",
-    theme:themes[1]
+    theme:themes[Math.floor(Math.random()*themes.length)]
   };
-  //Math.floor(Math.random()*themes.length)
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWidth(newWidth);
+      console.log("updating Width");
+    };
+
+    window.addEventListener("resize", updateWindowDimensions);
+    updateWindowDimensions()
+    return () => window.removeEventListener("resize", updateWindowDimensions) }else{
+      setWidth(1920)
+    }
+
+  }, []);
   return (
     <>
     <AuthContextProvider>
-    <TreeContainer demoTree={false}>
+    <TreeContainer width={width} demoTree={false}>
           <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
           <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
-          <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
+          <Header width={width} demo={true}  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
           <div style={{marginTop:"16 em",height:"10em"}}></div>
           {tree?.links.map((link, key) => (
-            <LinkItem demo={false} width={1920} theme={tree.theme} key={key} link={link} />
+            <LinkItem demo={false} width={width} theme={tree.theme} key={key} link={link} />
           ))}
           <SpecialContainer>
             {tree?.special_links?.map((special, key) => (

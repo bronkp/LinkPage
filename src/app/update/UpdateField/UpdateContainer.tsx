@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../../../../context/AuthContext";
 import styles from "@/app/page.module.css";
 import { useEffect } from "react";
-import { Cord, LinkType, TreeType } from "../../../../types/types";
+import { ColorPallet, Cord, LinkType, TreeType } from "../../../../types/types";
 import Tree from "../../../../components/Tree";
 import GridLayout from "react-grid-layout";
 import { MdDelete, MdOutlineDriveFolderUpload } from "react-icons/md";
@@ -16,9 +16,8 @@ const UpdateContainer = () => {
   const [loading, setLoading] = useState(true);
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   //image url for inital and selected iamges
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState<string>();
   const [page, setPage] = useState<TreeType>();
-  const [url, setURL] = useState("");
   const [error, setError] = useState("");
   const [exists,setExists]=useState(false)
   const [uid, setUID] = useState("");
@@ -117,10 +116,10 @@ const UpdateContainer = () => {
         .getPublicUrl(page.pfp);
       console.log("url", url);
       let edittedPage: TreeType = data?.[0];
-      edittedPage.pfp = url?.data.publicUrl;
+      edittedPage.pfp = url?.data.publicUrl!;
       setPage(edittedPage);
       setSelectedImage(url?.data.publicUrl);
-      setExists(imageExists(url?.data.publicUrl))
+      setExists(imageExists(url?.data.publicUrl as string) as boolean)
       console.log(edittedPage,"here")
     }
     setInitLinkOrder([...page.links]);
@@ -268,15 +267,15 @@ const UpdateContainer = () => {
     edittedPage.links?.push({ link: "", name: "" });
     setPage(edittedPage as TreeType);
   };
-  const handleImage = (e) => {
+  const handleImage = (e:any) => {
     setExists(true)
     let edittedPage = { ...page };
     edittedPage.pfp = `${URL.createObjectURL(e)}`;
-    setPage(edittedPage);
+    setPage(edittedPage as TreeType);
     setFile(e);
     setSelectedImage(`${URL.createObjectURL(e)}`);
   };
-  const imageExists=(url)=>{
+  const imageExists=(url:string)=>{
     if(!loading){
     try {
       var http = new XMLHttpRequest();
@@ -288,10 +287,10 @@ const UpdateContainer = () => {
       return false
     }}
   }
-  const pickColor = (theme)=>{
+  const pickColor = (theme:ColorPallet)=>{
     let edittedPage = {...page}
     edittedPage.theme=theme
-    setPage(edittedPage)
+    setPage(edittedPage as TreeType)
   }
   const [width, setWidth] = useState(0);
 
@@ -314,7 +313,6 @@ const UpdateContainer = () => {
   useEffect(() => {
     getUserPage();
   }, []);
-  const [a,setA]=useState("yo")
   return (
     <>
       <div style={{
@@ -344,7 +342,7 @@ const UpdateContainer = () => {
             <input
             accept="image/png, image/jpeg"
               onChange={(e) => {
-                handleImage(e.target.files[0]);
+                handleImage(e?.target?.files?.[0]);
               }}
               style={{
                 position: "absolute",

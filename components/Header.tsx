@@ -8,6 +8,7 @@ type HeaderProps = {
   demo: Boolean;
   width: number;
 };
+
 const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
   return (
     <>

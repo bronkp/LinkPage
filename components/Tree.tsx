@@ -65,7 +65,7 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
         .from("TreePages")
         .select()
         .eq("url", uid);
-      let newTree = data[0];
+      let newTree = data?.[0];
       let url = context.client?.storage
         .from("tree-pfps")
         .getPublicUrl(newTree?.pfp!);
@@ -113,23 +113,23 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   }, []);
   return (
     <>
-      {!demo&&<Navbar theme={theme}/>}
+      {!demo&&<Navbar theme={theme as ColorPallet}/>}
       {!loading && (
         <TreeContainer width={width} demoTree={demo ? true : false}>
-          <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:tree.theme.base}}></div>
-          <Header width={width} demo={demo?true:false}  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
+          <div  style={{backgroundColor:tree?.theme.runner}} className={styles["tree-runner"]}></div>
+          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:tree!.theme.base}}></div>
+          <Header width={width} demo={demo?true:false}  theme={tree!.theme} pfp={tree!.pfp} name={tree!.name} />
           
 
           {tree?.links.map((link, key) => (
             <LinkItem width={width} demo={demo?true:false} theme={tree.theme} key={key} link={link} />
             ))}
            
-          <SpecialContainer>
+          {/* <SpecialContainer>
             {tree?.special_links?.map((special, key) => (
               <Special key={key} special={special} />
             ))}
-          </SpecialContainer>
+          </SpecialContainer> */}
         </TreeContainer>
       )}
     </>

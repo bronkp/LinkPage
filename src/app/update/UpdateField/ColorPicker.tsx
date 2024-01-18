@@ -4,7 +4,7 @@ import { themes } from '../../../../utils/themes';
 type ColorPickerProps ={
     pickColor:any,
 }
-const ColorPicker:React.FC = ({pickColor}) => {
+const ColorPicker:React.FC<ColorPickerProps> = ({pickColor}) => {
   return (
  
   <div className={styles["color-picker"]}>
