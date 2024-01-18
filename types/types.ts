@@ -30,4 +30,6 @@ export type ColorPallet = {
     link:string;
     runner:string;
     headerBack:string;
+    linkStyle:string;
+    demo:string;
 }

@@ -9,6 +9,7 @@ import Special from "../../components/Special";
 import Navbar from "../../components/Navbar";
 import AuthContextProvider from "../../context/AuthContext";
 import { themes } from "../../utils/themes";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const tree = {
@@ -24,19 +25,19 @@ export default function Home() {
     ],
     special_links:[],
     pfp:"",
-    theme:themes[0]
+    theme:themes[1]
   };
+  //Math.floor(Math.random()*themes.length)
   return (
     <>
     <AuthContextProvider>
-    <Navbar/>
     <TreeContainer demoTree={false}>
           <div  style={{backgroundColor:tree.theme.runner}} className={styles["tree-runner"]}></div>
           <div style={{top:0,zIndex:"-2",position:"absolute",width:"100vw",height:"100vh", backgroundColor:tree.theme.base}}></div>
           <Header  theme={tree.theme} pfp={tree.pfp} name={tree!.name} />
           <div style={{marginTop:"16 em",height:"10em"}}></div>
           {tree?.links.map((link, key) => (
-            <LinkItem theme={tree.theme} key={key} link={link} />
+            <LinkItem demo={false} width={1920} theme={tree.theme} key={key} link={link} />
           ))}
           <SpecialContainer>
             {tree?.special_links?.map((special, key) => (

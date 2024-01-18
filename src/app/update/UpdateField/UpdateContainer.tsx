@@ -314,6 +314,7 @@ const UpdateContainer = () => {
   useEffect(() => {
     getUserPage();
   }, []);
+  const [a,setA]=useState("yo")
   return (
     <>
       <div style={{
@@ -323,7 +324,6 @@ const UpdateContainer = () => {
         }} className={styles.updateDemoContainer}>
         <div style={{zIndex:15}} className={styles.updateContainer}>
           <ColorPicker pickColor={pickColor}/>
-          {width}
           <div className={styles.updateContainerBackground}></div>
           <div
             style={
@@ -440,11 +440,18 @@ const UpdateContainer = () => {
                       />
                     </div>
                     <button
+                    onTouchEnd={(e)=>{
+
+                      deleteLink(cord.i);
+                      e.stopPropagation()
+                    }}
+                    style={{zIndex:10000}}
+                    type="button"
                       onClick={() => {
                         deleteLink(cord.i);
                       }}
                     >
-                      <MdDelete />
+                      <MdDelete  />
                     </button>
                   </div>
                 ))}

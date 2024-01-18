@@ -101,8 +101,8 @@ router.push("/update")
           >
             Signout
           </p>
-          <a style={{top:"4em", position:"fixed",zIndex:10}} href="/update">Edit</a>
-          <a style={{top:"6em", position:"fixed",zIndex:10}}  href={`/page/${page}`}>Page</a>
+          <a style={{zIndex:10}} href="/update">Edit</a>
+          <a style={{zIndex:10}}  href={`/page/${page}`}>Page</a>
         </div>
       }
     </>

@@ -30,7 +30,7 @@
   padding: 1em;
 }
 .linkItem {
-  
+  border-style: solid;
   display: flex;
   border-radius:2em;
   align-items: center;
@@ -41,14 +41,12 @@
   padding-left: 3em;
   padding-right: 3em;
   margin: 2em;
-  background-color: #989181;
   transition: ease-in-out 400ms;
 }
 .linkItem a {
   
   text-decoration: none;
   font-size: 3em;
-  color: #E7E5DF;
 }
 .linkItem:hover{
   transition: ease-in-out 400ms;
@@ -237,7 +235,7 @@ width:10em;
   flex-direction: column;
 }
 .login-portal-container{
-  position: absolute;
+  position: fixed;
   background-color: #797367;
   display: flex;
   top:0;
@@ -249,13 +247,15 @@ width:10em;
   
 }
 .login-box{
+  position: absolute;
+  top:1em;
   justify-content: center;
   border-radius: 5em;
   background-color:#E7E5DF ;
   display: flex;
   gap:1em;
   padding-top: 3em;
-  padding-bottom: 3em;
+  padding-bottom: 1em;
   padding-right: 6em;
   padding-left: 6em;
   height:10em;
@@ -282,7 +282,7 @@ font-size: 2em;
 .navbar{
   position: absolute;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap:1em;
   color:white;
 

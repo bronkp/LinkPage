@@ -13,7 +13,6 @@ export default function Home() {
  
   return (<>
   <AuthContextProvider>
-  <Navbar/>
     <div  className={styles["login-portal-container"]}>
       <div style={{ flexDirection:"column",justifyContent:"center", display:"flex", alignItems:"center"}}>
 
