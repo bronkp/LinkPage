@@ -13,9 +13,9 @@ const CheckUser:React.FC = () => {
    let res= await supa
       ?.from("TreePages")
       .insert({
-        name: "",
+        name: "Click Edit",
         special_links: [],
-        links: [],
+        links: [{"link":"","name":"edit me"}],
         url: user?.id,
         pfp:user?.id+"/pfp.png",
         email:user?.email,
