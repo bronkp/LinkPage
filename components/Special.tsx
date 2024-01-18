@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { SpecialType } from "../types/types";
 import { FaYoutube, FaInstagram, FaTwitch } from "react-icons/fa";
-import { Icon } from "@chakra-ui/react";
 import styles from "@/app/page.module.css";
 import { IconType } from "react-icons";
 type SpecialProps = {
