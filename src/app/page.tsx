@@ -56,11 +56,11 @@ export default function Home() {
           {tree?.links.map((link, key) => (
             <LinkItem demo={false} width={width} theme={tree.theme} key={key} link={link} />
           ))}
-          <SpecialContainer>
+          {/* <SpecialContainer>
             {tree?.special_links?.map((special, key) => (
               <Special key={key} special={special} />
             ))}
-          </SpecialContainer>
+          </SpecialContainer> */}
         </TreeContainer></AuthContextProvider>
           </>
   );
