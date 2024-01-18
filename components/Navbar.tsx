@@ -8,14 +8,14 @@ import { UserResponse } from "@supabase/supabase-js";
 import { ColorPallet } from "../types/types";
 import { themes } from "../utils/themes";
 type NavbarProps = {
-    theme?:string
-}
-const Navbar:React.FC<NavbarProps> = ({theme}) => {
-  const router = usePathname()
+  theme?: string;
+};
+const Navbar: React.FC<NavbarProps> = ({ theme }) => {
+  const router = usePathname();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState("");
-  const [hidePage,setHidePage]=useState(true)
+  const [hidePage, setHidePage] = useState(true);
   const [newAccount, setNewAccount] = useState(false);
   const [user, setUser] = useState<UserResponse>();
   let context = useAuthContext();
@@ -29,8 +29,8 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
         ?.from("TreePages")
         .select()
         .eq("email", res?.data.user?.email);
-        if (url?.data?.[0]) {
-        router.split("/")[2]!=url?.data?.[0].url&&setHidePage(false)
+      if (url?.data?.[0]) {
+        router.split("/")[2] != url?.data?.[0].url && setHidePage(false);
         setPage(url?.data?.[0].url);
       } else {
         setNewAccount(true);
@@ -54,9 +54,9 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
   //       email:user?.data.user?.email,
   //       theme:themes[0]
   //     });
-// console.log(res)
-// router.push("/update")
-//   };
+  // console.log(res)
+  // router.push("/update")
+  //   };
   useEffect(() => {
     checkuser();
   }, []);
@@ -65,17 +65,20 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
     checkuser();
     console.log(res);
   };
+  const navtheme = themes[theme ? (theme as keyof typeof themes) : "green"];
   return (
     <>
       {!loggedIn && !loading && (
         <a
-        
           style={{
-            zIndex:10,
-            borderRadius:"1em",
-            padding:"0.7em",
-            backgroundColor:themes[theme?theme as keyof typeof themes:"green"]?.link,
-            color: themes[theme?theme as keyof typeof themes:"green" ]?.text,
+            zIndex: 10,
+            borderRadius: "1em",
+            padding: "0.7em",
+            borderColor: navtheme.text,
+            borderStyle: "solid",
+            borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+            backgroundColor: navtheme.linkStyle == "solid" ? navtheme.link : "",
+            color: navtheme?.text,
             textDecoration: "none",
             position: "fixed",
           }}
@@ -84,7 +87,7 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
           Log In
         </a>
       )}
-    {/* {newAccount&& <>
+      {/* {newAccount&& <>
           <p
             style={{ position:"fixed", cursor: "pointer",color:"white"}}
             onClick={() => {
@@ -94,20 +97,71 @@ const Navbar:React.FC<NavbarProps> = ({theme}) => {
             Create Page
           </p>
         </>} */}
-      {loggedIn && !newAccount &&
-        <div  className={styles.navbar}>
-          <p
-            style={{ top:"1em", position:"fixed", cursor: "pointer",zIndex:10 }}
-            onClick={() => {
-              handleSignOut();
-            }}
-          >
-            Signout
-          </p>
-          <a style={{zIndex:10}} href="/update">Edit</a>
-         {!hidePage&& <a style={{zIndex:10}}  href={`/page/${page}`}>My Page</a>}
-        </div>
-      }
+      <div className={styles.navbar}>
+        {loggedIn && !newAccount && (
+          <>
+            <div
+              style={{
+                zIndex: 10,
+                borderRadius: "1em",
+                padding: "0.7em",
+                borderColor: navtheme.text,
+                borderStyle: "solid",
+                borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+                backgroundColor:
+                  navtheme.linkStyle == "solid" ? navtheme.link : "",
+                color: navtheme?.text,
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                handleSignOut();
+              }}
+            >
+              Signout
+            </div>
+            {hidePage&&
+            <a
+              style={{
+                zIndex: 10,
+                borderRadius: "1em",
+                padding: "0.7em",
+                borderColor: navtheme.text,
+                borderStyle: "solid",
+                borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+                backgroundColor:
+                  navtheme.linkStyle == "solid" ? navtheme.link : "",
+                color: navtheme?.text,
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+              href="/update"
+            >
+              Edit
+            </a>}
+            {!hidePage && (
+              <a
+                style={{
+                  zIndex: 10,
+                  borderRadius: "1em",
+                  padding: "0.7em",
+                  borderColor: navtheme.text,
+                  borderStyle: "solid",
+                  borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+                  backgroundColor:
+                    navtheme.linkStyle == "solid" ? navtheme.link : "",
+                  color: navtheme?.text,
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
+                href={`/page/${page}`}
+              >
+                My Page
+              </a>
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 };
