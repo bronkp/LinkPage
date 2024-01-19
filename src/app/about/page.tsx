@@ -7,7 +7,7 @@ return(
     
     <AuthContextProvider>
 
-<Navbar/>
+<Navbar theme="black"/>
     <div style={{paddingTop:"5em",color:"white",top:0,left:0,position:"fixed",backgroundColor:"black",width:"100vw",height:"100%",textAlign:"center"}}>
 <h1 >About myStuff:</h1>
 
