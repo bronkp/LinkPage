@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/app/page.module.css";
 import { ColorPallet } from "../types/types";
+import { themes } from '../utils/themes';
 type HeaderProps = {
   name: string;
   pfp: string;
@@ -14,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
     <>
       <div
         style={{
+          color:themes[theme as keyof typeof themes].headerText,
           maxWidth:"100%",
           paddingTop:"0.2em",
           width: width < 800 ? width : "10em",

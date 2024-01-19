@@ -17,8 +17,8 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   const [page, setPage] = useState("");
   const [hidePage, setHidePage] = useState(true);
   const [newAccount, setNewAccount] = useState(false);
-  const [route,setRoute]=useState<string[]>([])
-  
+  const [route, setRoute] = useState<string[]>([]);
+
   const [user, setUser] = useState<UserResponse>();
   let context = useAuthContext();
   const checkuser = async () => {
@@ -39,14 +39,14 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
     } else {
       setLoggedIn(false);
     }
-    setRoute(router.split("/"))
+    setRoute(router.split("/"));
     setLoading(false);
   };
   useEffect(() => {
     checkuser();
   }, []);
   const [width, setWidth] = useState(0);
-  
+
   useEffect(() => {
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -64,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
     } else {
       setWidth(1920);
     }
-  },[])
+  }, []);
   const handleSignOut = async () => {
     let res = await context?.client?.auth.signOut();
     checkuser();
@@ -72,10 +72,19 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   };
   const navtheme = themes[theme ? (theme as keyof typeof themes) : "green"];
   return (
-    
-   
-                
-      <div style={width>800?{flexDirection:"column"}:{paddingBottom:"1em",flexDirection:"row",width:"100vw",justifyContent:"center",alignItems:"center",}} className={styles.navbar}>
+    <div
+      style={
+        width > 800
+          ? { flexDirection: "column" }
+          : {
+              paddingBottom: "1em",
+              flexDirection: "row",
+              width: "100%",
+              alignItems: "center",
+            }
+      }
+      className={styles.navbar}
+    >
       {!loggedIn && !loading && (
         <a
           style={{
@@ -94,29 +103,29 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
           Log In
         </a>
       )}
-        {loggedIn && !newAccount && (
-          <>
-            <div
-              style={{
-                zIndex: 10,
-                borderRadius: "1em",
-                padding: "0.7em",
-                borderColor: navtheme.text,
-                borderStyle: "solid",
-                borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
-                backgroundColor:
-                  navtheme.linkStyle == "solid" ? navtheme.link : "",
-                color: navtheme?.text,
-                textDecoration: "none",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                handleSignOut();
-              }}
-            >
-              Signout
-            </div>
-            {route[2]==page &&
+      {loggedIn && !newAccount && (
+        <>
+          <div
+            style={{
+              zIndex: 10,
+              borderRadius: "1em",
+              padding: "0.7em",
+              borderColor: navtheme.text,
+              borderStyle: "solid",
+              borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+              backgroundColor:
+                navtheme.linkStyle == "solid" ? navtheme.link : "",
+              color: navtheme?.text,
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              handleSignOut();
+            }}
+          >
+            Signout
+          </div>
+          {route[2] == page && (
             <a
               style={{
                 zIndex: 10,
@@ -134,50 +143,50 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
               href="/update"
             >
               Edit
-            </a>}
-            {route[1]&&route[2]!=page && (
-              <a
-                style={{
-                  zIndex: 10,
-                  borderRadius: "1em",
-                  padding: "0.7em",
-                  borderColor: navtheme.text,
-                  borderStyle: "solid",
-                  borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
-                  backgroundColor:
-                    navtheme.linkStyle == "solid" ? navtheme.link : "",
-                  color: navtheme?.text,
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
-                href={`/page/${page}`}
-              >
-                My Page
-              </a>
-            )}
-          </>
-        )}
-        {route[1]&&route[1]!="about"&&
+            </a>
+          )}
+          {route[1] && route[2] != page && (
+            <a
+              style={{
+                zIndex: 10,
+                borderRadius: "1em",
+                padding: "0.7em",
+                borderColor: navtheme.text,
+                borderStyle: "solid",
+                borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+                backgroundColor:
+                  navtheme.linkStyle == "solid" ? navtheme.link : "",
+                color: navtheme?.text,
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+              href={`/page/${page}`}
+            >
+              My Page
+            </a>
+          )}
+        </>
+      )}
+      {route[1] && route[1] != "about" && (
         <a
-                style={{
-                  zIndex: 10,
-                  borderRadius: "1em",
-                  padding: "0.7em",
-                  borderColor: navtheme.text,
-                  borderStyle: "solid",
-                  borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
-                  backgroundColor:
-                    navtheme.linkStyle == "solid" ? navtheme.link : "",
-                  color: navtheme?.text,
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
-                href={`/about`}
-              >
-                About
-              </a>}
-      </div>
-    
+          style={{
+            zIndex: 10,
+            borderRadius: "1em",
+            padding: "0.7em",
+            borderColor: navtheme.text,
+            borderStyle: "solid",
+            borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+            backgroundColor: navtheme.linkStyle == "solid" ? navtheme.link : "",
+            color: navtheme?.text,
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+          href={`/about`}
+        >
+          About
+        </a>
+      )}
+    </div>
   );
 };
 

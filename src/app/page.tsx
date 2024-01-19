@@ -96,15 +96,15 @@ useEffect(()=>{
               backgroundColor: themes[tree.theme as keyof typeof themes].base,
             }}
           ></div>
-          <h1 style={{color:themes[tree.theme as keyof typeof themes].text}}>Welcome!</h1>
+          <h1 style={{ marginBottom:"0em", fontSize:"4em",color:themes[tree.theme as keyof typeof themes].headerText}}>Welcome!</h1>
           {/* <Header
             width={width}
             demo={true}
             theme={tree.theme}
-            pfp={tree.pfp}
+            pfp={tree.pfp
             name={tree!.name}
           /> */}
-          <div style={{ marginTop: "16 em", height: "10em" }}></div>
+          <div style={{ marginTop: "0em", height: "10em" }}></div>
           {tree?.links.map((link, key) => (
             <LinkItem
               demo={false}
