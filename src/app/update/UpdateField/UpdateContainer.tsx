@@ -88,8 +88,10 @@ const UpdateContainer = () => {
     
     const user = await context.client!.auth.getUser();
     //retrieves email from response
-    console.log('user',user)
     let resEmail = user?.data?.user?.email;
+    if(!user?.data?.user?.email){
+      router.push("/login")
+    }
     //sets email for session
     setEmail(resEmail!);
     setUID(user?.data?.user?.id!);

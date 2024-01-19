@@ -11,13 +11,13 @@ import SpecialContainer from "./SpecialContainer";
 import TreeContainer from "./TreeContainer";
 import { ColorPallet, TreeType } from "../types/types";
 import Navbar from "./Navbar";
-import styles from '@/app/page.module.css';
+import styles from "@/app/page.module.css";
 import { themes } from "../utils/themes";
 type TreeProps = {
   demo?: TreeType;
-  setTheme?:React.SetStateAction<ColorPallet>;
+  setTheme?: React.SetStateAction<ColorPallet>;
 };
-const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
+const Tree: React.FC<TreeProps> = ({ demo, setTheme }) => {
   const [tree, setTree] = useState<TreeType>();
   const [loading, setLoading] = useState(true);
   const [pfp, setPFP] = useState("");
@@ -25,39 +25,39 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   const params = useParams();
   const { uid } = params;
   const colorful = {
-    base:"#CE5374",
-    text:"white",
-    link:"#9C0D38",
-    runner:"#DDF0FF"
-  }
+    base: "#CE5374",
+    text: "white",
+    link: "#9C0D38",
+    runner: "#DDF0FF",
+  };
   const tangerine = {
-    base:"#EFECCA",
-    text:"black",
-    link:"#F7FF58",
-    runner:"#FF934F",
-    headerBack:"#5E565A"
-  }
+    base: "#EFECCA",
+    text: "black",
+    link: "#F7FF58",
+    runner: "#FF934F",
+    headerBack: "#5E565A",
+  };
   const blau = {
-    base:"#4C7081",
-    text:"white",
-    link:"#385F71",
-    runner:"#F5F0F6",
-    headerBack:"#2B4162"
-  }
-  const pink ={
-    base:"#D99AC5",
-    text:"white",
-    link:"#7FE3FF",
-    runner:"#DCCDE8",
-    headerBack:"#B37BA4"
-  }
+    base: "#4C7081",
+    text: "white",
+    link: "#385F71",
+    runner: "#F5F0F6",
+    headerBack: "#2B4162",
+  };
+  const pink = {
+    base: "#D99AC5",
+    text: "white",
+    link: "#7FE3FF",
+    runner: "#DCCDE8",
+    headerBack: "#B37BA4",
+  };
   const green = {
-    base:"#5DA28C",
-    text:"white",
-    link:"#484349",
-    runner:"#F7F0F0",
-    headerBack:"#109648"
-  }
+    base: "#5DA28C",
+    text: "white",
+    link: "#484349",
+    runner: "#F7F0F0",
+    headerBack: "#109648",
+  };
   const fetchData = async () => {
     try {
       //@ts-ignore
@@ -95,44 +95,72 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    const updateWindowDimensions = () => {
-      const newWidth = window.innerWidth;
-      setWidth(newWidth);
-      console.log("updating Width");
-    };
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      const updateWindowDimensions = () => {
+        const newWidth = window.innerWidth;
+        setWidth(newWidth);
+        console.log("updating Width");
+      };
 
-    window.addEventListener("resize", updateWindowDimensions);
-    updateWindowDimensions()
-    return () => window.removeEventListener("resize", updateWindowDimensions) }else{
-      setWidth(1920)
+      window.addEventListener("resize", updateWindowDimensions);
+      updateWindowDimensions();
+      return () => window.removeEventListener("resize", updateWindowDimensions);
+    } else {
+      setWidth(1920);
     }
-
   }, []);
-  let treeTheme = tree?.theme as keyof typeof themes
+  let treeTheme = tree?.theme as keyof typeof themes;
   return (
     <>
-      {!demo&&<Navbar theme={tree?.theme}/>}
-    <div style={{paddingTop:"3em",}}>
-      {!loading && (
-        <TreeContainer width={width} demoTree={demo ? true : false}>
-          <div  style={{backgroundColor:themes[treeTheme].runner}} className={styles["tree-runner"]}></div>
-          <div style={{top:0,zIndex:"-2",position:"fixed",width:width>800||width<600?"100vw":"100%",height:width>800||width<600?"100vh":"100%", backgroundColor:themes[treeTheme].base}}></div>
-          <Header width={width} demo={demo?true:false}  theme={treeTheme} pfp={tree!.pfp} name={tree!.name} />
-          
+      {!demo && <Navbar theme={tree?.theme} />}
+      <div style={{ paddingTop: "3em" }}>
+        {!loading && (
+          <TreeContainer width={width} demoTree={demo ? true : false}>
+            <div
+              style={{ backgroundColor: themes[treeTheme].runner }}
+              className={styles["tree-runner"]}
+            ></div>
+            <div
+              style={{
+                top: 0,
+                zIndex: "-2",
+                position: "fixed",
+                width: width > 800 || width < 600 ? "100vw" : "100%",
+                height: width > 800 || width < 600 ? "100vh" : "100%",
+                backgroundColor: themes[treeTheme].base,
+              }}
+            ></div>
+            <Header
+              width={width}
+              demo={demo ? true : false}
+              theme={treeTheme}
+              pfp={tree!.pfp}
+              name={tree!.name}
+            />
 
-          {tree?.links.map((link, key) => (
-            <LinkItem width={width} demo={demo?true:false} theme={themes[treeTheme]} key={key} link={link} />
+            {tree?.links.map((link, key) => (
+              <LinkItem
+                width={width}
+                demo={demo ? true : false}
+                theme={themes[treeTheme]}
+                key={key}
+                link={link}
+              />
             ))}
-           
-          {/* <SpecialContainer>
+
+            {/* <SpecialContainer>
             {tree?.special_links?.map((special, key) => (
               <Special key={key} special={special} />
             ))}
           </SpecialContainer> */}
-        </TreeContainer>
-      )}
-    </div></>
+          </TreeContainer>
+        )}
+      </div>
+    </>
   );
 };
 

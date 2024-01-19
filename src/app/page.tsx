@@ -90,9 +90,9 @@ useEffect(()=>{
             style={{
               top: 0,
               zIndex: "-2",
-              position: "absolute",
+              position: "fixed",
               width: "100vw",
-              height: "100vh",
+              height: "100%",
               backgroundColor: themes[tree.theme as keyof typeof themes].base,
             }}
           ></div>
