@@ -380,7 +380,7 @@ const UpdateContainer = () => {
               placeholder="url"
             />
           </div>
-          <div>Links</div>
+          <div>Drag Links to Rearrange</div>
           {!loading && (
             <div
               style={{
