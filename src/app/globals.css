@@ -2,8 +2,10 @@ html{
     max-width: 100%;
     overflow-x: hidden;
 }
-body{  
-    max-width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;800&display=swap');
+body{ 
+    font-family: 'Rubik', sans-serif;
+        max-width: 100%;
     overflow-x: hidden;
     background-color: #393E41;
     background-image: linear-gradient( #788389,#393E41);

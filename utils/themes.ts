@@ -41,14 +41,14 @@ const black = {
   headerText: "white",
 };
 const green = {
-  base: "#03440C",
-  text: "white",
-  link: "#484349",
-  runner: "#036016",
+  base: "#99BC85",
+  text: "#294B29",
+  link: "#D4E7C5",
+  runner: "#294B29",
   headerBack: "#023409",
-  linkStyle: "bordered",
+  linkStyle: "solid",
   demo: "#036016",
-  headerText: "white",
+  headerText: "#D4E7C5",
 };
 const gray = {
   base: "#D7CEB2",
@@ -90,14 +90,25 @@ const red= {
   demo: "#F02D3A",
   headerText: "#F02D3A",
 };
+const white = {
+  base: "#e6e6e6",
+  text: "#525252",
+  link: "white",
+  runner: "#e6e6e6",
+  headerBack: "#66635B",
+  linkStyle: "bordered",
+  demo: "#e6e6e6",
+  headerText: "#525252",
+}
 export const themes = {
-  green: green,
-  gray: gray,
   black: black,
-  tangerine: tangerine,
-  colorful: colorful,
-  blau: blau,
+  white:white,
   pink: pink,
-  busy:busy,
   red:red,
+  colorful: colorful,
+  tangerine: tangerine,
+  busy:busy,
+  green: green,
+  blau: blau,
+  gray: gray,
 };
