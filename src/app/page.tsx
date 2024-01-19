@@ -57,6 +57,7 @@ export default function Home() {
 
   return (
     <>
+    
     {/* Basically the tree component but was easier to build a custom version for home screen purposes */}
      {tree&&
       <AuthContextProvider>

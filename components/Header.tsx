@@ -14,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
     <>
       <div
         style={{
+          paddingTop:"1em",
           width: width < 800 ? width : "",
           marginTop: width > 800 ? "0em" : demo ? "-1.9em" : "0em",
           backgroundColor: "none",

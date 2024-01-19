@@ -18,6 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   const [hidePage, setHidePage] = useState(true);
   const [newAccount, setNewAccount] = useState(false);
   const [route,setRoute]=useState<string[]>([])
+  
   const [user, setUser] = useState<UserResponse>();
   let context = useAuthContext();
   const checkuser = async () => {
@@ -44,6 +45,26 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   useEffect(() => {
     checkuser();
   }, []);
+  const [width, setWidth] = useState(0);
+  
+  useEffect(() => {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      const updateWindowDimensions = () => {
+        const newWidth = window.innerWidth;
+        setWidth(newWidth);
+      };
+
+      window.addEventListener("resize", updateWindowDimensions);
+      updateWindowDimensions();
+      return () => window.removeEventListener("resize", updateWindowDimensions);
+    } else {
+      setWidth(1920);
+    }
+  },[])
   const handleSignOut = async () => {
     let res = await context?.client?.auth.signOut();
     checkuser();
@@ -51,9 +72,10 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   };
   const navtheme = themes[theme ? (theme as keyof typeof themes) : "green"];
   return (
-    <>
+    
    
-      <div className={styles.navbar}>
+                
+      <div style={width>800?{flexDirection:"column"}:{paddingBottom:"1em",flexDirection:"row",width:"100vw",justifyContent:"center",alignItems:"center"}} className={styles.navbar}>
       {!loggedIn && !loading && (
         <a
           style={{
@@ -155,7 +177,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
                 About
               </a>}
       </div>
-    </>
+    
   );
 };
 

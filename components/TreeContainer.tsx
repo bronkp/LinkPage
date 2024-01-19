@@ -8,7 +8,7 @@ type Props = {
   };
 const TreeContainer:React.FC<Props> = ({children,demoTree,width}) => {
   return (
-    <div style={{paddingLeft:0}} className={demoTree?styles.demoContainer:styles.treeContainer}>{children}</div>
+    <div style={{paddingLeft:0,}} className={demoTree?styles.demoContainer:styles.treeContainer}>{children}</div>
   )
 }
 

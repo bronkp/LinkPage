@@ -113,6 +113,7 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
   return (
     <>
       {!demo&&<Navbar theme={tree?.theme}/>}
+    <div style={{paddingTop:"3em",}}>
       {!loading && (
         <TreeContainer width={width} demoTree={demo ? true : false}>
           <div  style={{backgroundColor:themes[treeTheme].runner}} className={styles["tree-runner"]}></div>
@@ -131,7 +132,7 @@ const Tree: React.FC<TreeProps> = ({ demo,setTheme }) => {
           </SpecialContainer> */}
         </TreeContainer>
       )}
-    </>
+    </div></>
   );
 };
 

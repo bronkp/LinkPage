@@ -14,7 +14,7 @@ return(
 <h2>myStuff allows you to make a home page for your online accounts.</h2>
 <h2>Start by making a free account and then customize with the built in styles.</h2>
     <h1>About me:</h1>
-<h2> My name is Rory Saxton and I'm a self taught web-developer.</h2>
+<h2> My name is Rory Saxton and I&apos;m a self taught web-developer.</h2>
 <h2>If you have questions feel free to email me at contact@rorysaxton.com</h2>
 <h2>My other work can be found at <a style={{color:"white"}} href="https://rorysaxton.com/">
     rorysaxton.com
