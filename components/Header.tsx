@@ -16,10 +16,10 @@ const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
         style={{
           maxWidth:"100%",
           paddingTop:"1em",
-          width: width < 800 ? width : "",
-          marginTop: width > 800 ? "0em" : demo ? "-1.9em" : "0em",
+          width: width < 800 ? width : "10em",
+          marginTop: width > 800 ? "0em" : demo ? "0" : "0em",
           backgroundColor: "none",
-          position: width > 800 ? "absolute" : demo ? "relative" : "absolute",
+          position: width > 800 ? "relative" : demo ? "relative" : "relative",
         }}
         className={styles.header}
       >

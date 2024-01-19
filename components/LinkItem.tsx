@@ -9,21 +9,22 @@ type LinkItemProps = {
 };
 const LinkItem: React.FC<LinkItemProps> = ({ link, theme, demo, width }) => {
   return (
-    <div
+    
+      <a className={styles.linkItem} 
+      
+      
       style={{
+        color:theme.text,
         borderColor: theme.text,
         borderWidth:theme.linkStyle=="solid"?"0em":"0.3em",
         backgroundColor: theme.linkStyle=="solid"?theme.link:"",
         maxWidth: demo ? "80em" : "",
-        minWidth: width > 800 ? "40em" : "70vw",
+        minWidth: width > 800 ? "30em" : "70vw",
         width: width > 800 ? "20em" : "70vw",
-      }}
-      className={styles.linkItem}
-    >
-      <a style={{ color: theme.text }} href={link.link}>
+      }} href={link.link}>
         {link.name}
       </a>
-    </div>
+  
   );
 };
 

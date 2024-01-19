@@ -38,15 +38,19 @@
   width:60vw;
   min-width: 40em;
   padding: 1em;
-  padding-left: 3em;
-  padding-right: 3em;
+  padding-left: 1em;
+  padding-right: 1em;
   margin: 2em;
   transition: ease-in-out 400ms;
-}
-.linkItem a {
+  text-decoration: none;
   
   text-decoration: none;
-  font-size: 3em;
+  font-size:2em;
+}
+.linkItem a {
+  text-decoration: none;
+  
+  text-decoration: none;
 }
 .linkItem:hover{
   transition: ease-in-out 400ms;
