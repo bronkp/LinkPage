@@ -482,7 +482,7 @@ const UpdateContainer = () => {
                 Save Changes
               </button>
 
-              <button
+              {/* <button
                 onClick={() =>
                   console.log(
                     "Cords",
@@ -495,7 +495,7 @@ const UpdateContainer = () => {
                 }
               >
                 Debug
-              </button>
+              </button> */}
             </div>
           )}
 
