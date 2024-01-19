@@ -61,14 +61,14 @@ const gray = {
   headerText: "white",
 };
 const pink = {
-  base: "#FF299C",
-  text: "#FF299C",
+  base: "#fab9c7",
+  text: "#fab9c7",
   link: "white",
-  runner: "white",
+  runner: "#fab9c7",
   headerBack: "#66635B",
   linkStyle: "solid",
-  demo: "#FF299C",
-  headerText: "#FF299C",
+  demo: "#fab9c7",
+  headerText: "white",
 };
 const busy = {
   base: "#8AC926",
@@ -80,6 +80,16 @@ const busy = {
   demo: "#8AC926",
   headerText: "#EFE7DA",
 };
+const red= {
+  base: "#EFF6EE",
+  text: "#EFF6EE",
+  link: "#F02D3A",
+  runner: "#EFF6EE",
+  headerBack: "#66635B",
+  linkStyle: "solid",
+  demo: "#F02D3A",
+  headerText: "#F02D3A",
+};
 export const themes = {
   green: green,
   gray: gray,
@@ -89,4 +99,5 @@ export const themes = {
   blau: blau,
   pink: pink,
   busy:busy,
+  red:red,
 };
