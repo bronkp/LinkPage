@@ -35,7 +35,7 @@ if(password==confirmPassword){
      // router.push('/')
     }
   return (
-    <div style={{height:accountError||message?"22em":"19em"}} className={styles['login-box']}>
+    <div style={{height:accountError||message?"22em":"20em"}} className={styles['login-box']}>
         Email
         <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email'>
         </input>
@@ -47,7 +47,7 @@ if(password==confirmPassword){
         </input>
         {accountError&&<p style={{color:"red"}}>Error Creating Account</p>}
         {message&&<p >Check Email to Confirm Account</p>}
-        <button style={{paddingTop:"0.5em"}} onClick={()=>signup()}>
+        <button style={{paddingTop:"0.5em",paddingBottom:"1em"}} onClick={()=>signup()}>
             Sign Up
         </button>
     </div>
