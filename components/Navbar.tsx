@@ -17,6 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   const [page, setPage] = useState("");
   const [hidePage, setHidePage] = useState(true);
   const [newAccount, setNewAccount] = useState(false);
+  const [route,setRoute]=useState<string[]>([])
   const [user, setUser] = useState<UserResponse>();
   let context = useAuthContext();
   const checkuser = async () => {
@@ -30,7 +31,6 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
         .select()
         .eq("email", res?.data.user?.email);
       if (url?.data?.[0]) {
-        router.split("/")[2] != url?.data?.[0].url && setHidePage(false);
         setPage(url?.data?.[0].url);
       } else {
         setNewAccount(true);
@@ -38,25 +38,9 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
     } else {
       setLoggedIn(false);
     }
+    setRoute(router.split("/"))
     setLoading(false);
   };
-  // const createPage = async() => {
-  //   console.log('id', user?.data.user?.id.length)
-  //   let supa = context.client;
-  //  let res= await supa
-  //     ?.from("TreePages")
-  //     .insert({
-  //       name: "",
-  //       special_links: [],
-  //       links: [],
-  //       url: user?.data.user?.id,
-  //       pfp:user?.data.user?.id+"/pfp.png",
-  //       email:user?.data.user?.email,
-  //       theme:themes[0]
-  //     });
-  // console.log(res)
-  // router.push("/update")
-  //   };
   useEffect(() => {
     checkuser();
   }, []);
@@ -120,7 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
             >
               Signout
             </div>
-            {hidePage&&
+            {route[2]==page &&
             <a
               style={{
                 zIndex: 10,
@@ -139,7 +123,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
             >
               Edit
             </a>}
-            {!hidePage && (
+            {route[1]&&route[2]!=page && (
               <a
                 style={{
                   zIndex: 10,
@@ -161,6 +145,25 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
             )}
           </>
         )}
+        {route[1]&&route[1]!="about"&&
+        <a
+                style={{
+                  zIndex: 10,
+                  borderRadius: "1em",
+                  padding: "0.7em",
+                  borderColor: navtheme.text,
+                  borderStyle: "solid",
+                  borderWidth: navtheme.linkStyle == "solid" ? "0em" : "0.2em",
+                  backgroundColor:
+                    navtheme.linkStyle == "solid" ? navtheme.link : "",
+                  color: navtheme?.text,
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
+                href={`/about`}
+              >
+                About
+              </a>}
       </div>
     </>
   );
