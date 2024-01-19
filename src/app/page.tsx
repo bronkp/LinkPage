@@ -12,25 +12,13 @@ import { themes } from "../../utils/themes";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import CheckUser from "../../components/CheckUser";
+import { TreeType } from "../../types/types";
 
 export default function Home() {
-  const tree = {
-    name: "Welcome!",
-    links: [
-      { name: "Login", link: "/login" },
-      { name: "Me", link: "https://rorysaxton.com/" },
-      { name: "Demo", link: "/page/Bronkp" },
-    ],
-    specials: [],
-    special_links: [],
-    pfp: "",
-    theme:
-      Object.keys(themes)[
-        Math.floor(Math.random() * Object.keys(themes).length)
-      ],
-  };
+  const [tree,setTree]= useState<TreeType>()
+  
   const [width, setWidth] = useState(0);
-
+  
   useEffect(() => {
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -40,7 +28,6 @@ export default function Home() {
       const updateWindowDimensions = () => {
         const newWidth = window.innerWidth;
         setWidth(newWidth);
-        console.log("updating Width");
       };
 
       window.addEventListener("resize", updateWindowDimensions);
@@ -49,10 +36,29 @@ export default function Home() {
     } else {
       setWidth(1920);
     }
+    
+   setTree ({
+      name: "Welcome!",
+      links: [
+        { name: "Login", link: "/login" },
+        { name: "Example", link: "/page/Bronkp" },
+        { name: "About", link: "/about" },
+      ],
+      special_links: [],
+      pfp: "",
+      theme:
+        Object.keys(themes)[
+          Math.floor(Math.random() * Object.keys(themes).length)
+          
+        ],url:""
+    });
+
   }, []);
 
   return (
     <>
+    {/* Basically the tree component but was easier to build a custom version for home screen purposes */}
+     {tree&&
       <AuthContextProvider>
         <TreeContainer width={width} demoTree={false}>
           <CheckUser />
@@ -75,7 +81,7 @@ export default function Home() {
           <Header
             width={width}
             demo={true}
-            theme={tree.theme }
+            theme={tree.theme}
             pfp={tree.pfp}
             name={tree!.name}
           />
@@ -95,7 +101,7 @@ export default function Home() {
             ))}
           </SpecialContainer> */}
         </TreeContainer>
-      </AuthContextProvider>
+      </AuthContextProvider>}
     </>
   );
 }

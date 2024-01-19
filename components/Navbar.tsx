@@ -52,6 +52,8 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
   const navtheme = themes[theme ? (theme as keyof typeof themes) : "green"];
   return (
     <>
+   
+      <div className={styles.navbar}>
       {!loggedIn && !loading && (
         <a
           style={{
@@ -64,24 +66,12 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
             backgroundColor: navtheme.linkStyle == "solid" ? navtheme.link : "",
             color: navtheme?.text,
             textDecoration: "none",
-            position: "fixed",
           }}
           href={`/login`}
         >
           Log In
         </a>
       )}
-      {/* {newAccount&& <>
-          <p
-            style={{ position:"fixed", cursor: "pointer",color:"white"}}
-            onClick={() => {
-              createPage();
-            }}
-          >
-            Create Page
-          </p>
-        </>} */}
-      <div className={styles.navbar}>
         {loggedIn && !newAccount && (
           <>
             <div
