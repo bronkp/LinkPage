@@ -15,6 +15,7 @@ const Signup:React.FC = () => {
     
     const signup = async()=>{
 
+      setAccountError("")
 if(password==confirmPassword){
         const { data, error } = await context.client!.auth.signUp({
             email: email,
@@ -25,7 +26,6 @@ if(password==confirmPassword){
   setPassword("")
   setConfirmPassword("")
   setMessage(true)
-  setAccountError("")
 
 }else{
   setAccountError("Error Creating Account")
