@@ -10,7 +10,7 @@ const Signup:React.FC = () => {
     const [password,setPassword]=useState("")
     const [confirmPassword,setConfirmPassword]=useState("")
     const [message,setMessage]=useState(false)
-    const [accountError,setAccountError]=useState(false)
+    const [accountError,setAccountError]=useState("")
     const router = useRouter()
     
     const signup = async()=>{
@@ -25,12 +25,14 @@ if(password==confirmPassword){
   setPassword("")
   setConfirmPassword("")
   setMessage(true)
-  setAccountError(false)
+  setAccountError("")
 
 }else{
-  setAccountError(true)
+  setAccountError("Error Creating Account")
   setMessage(false)
         }
+    }else{
+setAccountError("Passwords do not match")
     }
      // router.push('/')
     }
@@ -39,15 +41,15 @@ if(password==confirmPassword){
         Email
         <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email'>
         </input>
-        Password
+        Password (At least 8 characters)
         <input value={password} type="password" placeholder='password' onChange={(e)=>setPassword(e.target.value)}>
         </input>
     Confirm Password
         <input value={confirmPassword} type="password" onChange={(e)=>setConfirmPassword(e.target.value)} placeholder='confirm password'>
         </input>
-        {accountError&&<p style={{color:"red"}}>Error Creating Account</p>}
+        {accountError&&<p style={{color:"red"}}>{accountError}</p>}
         {message&&<p >Check Email to Confirm Account</p>}
-        <button style={{paddingTop:"0.5em",paddingBottom:"1em"}} onClick={()=>signup()}>
+        <button disabled={password.length<8} style={{paddingTop:"0.5em",paddingBottom:"1em"}} onClick={()=>signup()}>
             Sign Up
         </button>
     </div>

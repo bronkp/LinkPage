@@ -15,3 +15,7 @@ body{
     
     background-repeat: no-repeat; */
 }
+button:disabled{
+    color:rgb(207, 207, 207);
+  
+  }
