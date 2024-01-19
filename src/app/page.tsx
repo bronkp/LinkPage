@@ -15,7 +15,21 @@ import CheckUser from "../../components/CheckUser";
 import { TreeType } from "../../types/types";
 
 export default function Home() {
-  const [tree,setTree]= useState<TreeType>()
+  const [tree,setTree]= useState<TreeType>({
+    name: "Welcome!",
+    links: [
+      { name: "Login", link: "/login" },
+      { name: "Example", link: "/page/Bronkp" },
+      { name: "About", link: "/about" },
+    ],
+    special_links: [],
+    pfp: "",
+    theme:
+      Object.keys(themes)[
+        0
+        
+      ],url:""
+  })
   
   const [width, setWidth] = useState(0);
   
@@ -37,7 +51,11 @@ export default function Home() {
       setWidth(1920);
     }
     
-   setTree ({
+  
+
+  }, []);
+useEffect(()=>{
+ setTree ({
       name: "Welcome!",
       links: [
         { name: "Login", link: "/login" },
@@ -53,8 +71,7 @@ export default function Home() {
         ],url:""
     });
 
-  }, []);
-
+},[])
   return (
     <>
     
@@ -79,13 +96,14 @@ export default function Home() {
               backgroundColor: themes[tree.theme as keyof typeof themes].base,
             }}
           ></div>
-          <Header
+          <h1 style={{color:themes[tree.theme as keyof typeof themes].text}}>Welcome!</h1>
+          {/* <Header
             width={width}
             demo={true}
             theme={tree.theme}
             pfp={tree.pfp}
             name={tree!.name}
-          />
+          /> */}
           <div style={{ marginTop: "16 em", height: "10em" }}></div>
           {tree?.links.map((link, key) => (
             <LinkItem

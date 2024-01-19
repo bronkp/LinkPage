@@ -14,11 +14,12 @@ const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
     <>
       <div
         style={{
+          maxWidth:"100%",
           paddingTop:"1em",
           width: width < 800 ? width : "",
           marginTop: width > 800 ? "0em" : demo ? "-1.9em" : "0em",
           backgroundColor: "none",
-          position: width > 800 ? "fixed" : demo ? "relative" : "fixed",
+          position: width > 800 ? "absolute" : demo ? "relative" : "absolute",
         }}
         className={styles.header}
       >

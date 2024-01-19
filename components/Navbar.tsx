@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme }) => {
     
    
                 
-      <div style={width>800?{flexDirection:"column"}:{paddingBottom:"1em",flexDirection:"row",width:"100vw",justifyContent:"center",alignItems:"center"}} className={styles.navbar}>
+      <div style={width>800?{flexDirection:"column"}:{paddingBottom:"1em",flexDirection:"row",width:"100vw",justifyContent:"center",alignItems:"center",}} className={styles.navbar}>
       {!loggedIn && !loading && (
         <a
           style={{
