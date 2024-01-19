@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ name, pfp, theme, demo, width }) => {
           className={styles.pfp}
           style={{
             backgroundImage: `url(${pfp})`,
-            marginTop: demo ? "0em" : "10em",
+            marginTop: demo ? "0em" : "3em",
           }}
         ></div>
       )}
