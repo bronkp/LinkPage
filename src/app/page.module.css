@@ -244,6 +244,7 @@ width:10em;
 
 }
 .header-input-container{
+  text-align: center;
   display: flex;
   flex-direction: column;
 }

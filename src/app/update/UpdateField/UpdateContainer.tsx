@@ -375,10 +375,12 @@ const UpdateContainer = () => {
             />
             Url for Your Page
             <input
+            pattern="[A-Za-z0-9]{3}"
               value={page ? page?.url : ""}
               maxLength={10}
               onChange={(e) => {
-                handleChange("url", e.target.value);
+                !e.target.value.split("").some(r=> ["/","#","?"].includes(r))&&handleChange("url", e.target.value);
+                
               }}
               placeholder="url"
             />
