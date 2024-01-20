@@ -33,7 +33,7 @@ const blau = {
 const black = {
   base: "#222222",
   text: "white",
-  link: "#84DCC6",
+  link: "#2b2b2b",
   runner: "#222222",
   headerBack: "#222222",
   linkStyle: "bordered",
