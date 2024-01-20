@@ -22,6 +22,7 @@ const UpdateContainer = () => {
   const [exists,setExists]=useState(false)
   const [uid, setUID] = useState("");
   const [email, setEmail] = useState("");
+  const [isDraggable,setIsDraggable] = useState(true)
   const [initLinkOrder, setInitLinkOrder] = useState<LinkType[]>();
   // const [overlap, setOverlap] = useState(true);
   const [ogState, setOgState] = useState<Cord[]>();
@@ -262,7 +263,7 @@ const UpdateContainer = () => {
     let newInit = [...initLinkOrder!];
     newInit.push({ link: "", name: "" });
     let length = newCords.length;
-    newCords.push({ i: `${length}`, x: 0, y: 0 + 2 * length, w: 3, h: 2 });
+    newCords.push({ i: `${length}`, x: 0, y: 0 + 2 * length, w: 3, h: 2 ,});
     setOgState(newCords);
     setInitLinkOrder(newInit);
     let edittedPage = { ...page };
@@ -382,6 +383,7 @@ const UpdateContainer = () => {
               placeholder="url"
             />
           </div>
+          {/* {isDraggable&&"draggable"} */}
           <div>Drag Links to Rearrange</div>
           {!loading && (
             <div
@@ -392,6 +394,7 @@ const UpdateContainer = () => {
               className={styles.gridContainer}
             >
               <GridLayout
+              isDraggable={isDraggable}
                 style={{ top: "-6em",zIndex:0 }}
                 compactType="vertical"
                 onDragStart={(e) => setOgState(e)}
@@ -404,11 +407,13 @@ const UpdateContainer = () => {
                 className={styles["react-grid-layout"]}
                 layout={ogState}
                 cols={1}
-                rowHeight={40}
+                rowHeight={50}
                 width={50}
+                
               >
                 {ogState?.map((cord, i) => (
                   <div
+                  onTouchStart={(e)=>setIsDraggable(true)}
                     key={cord.i}
                     onClick={() => {
                       console.log(i);
@@ -419,11 +424,16 @@ const UpdateContainer = () => {
                     <div style={{zIndex:100}} className={styles.vStack}>
                       <input
                        id={`${i}title`}
-                      onTouchStart={(e)=>{
-                        document.getElementById(`${i}title`)?.focus()
+                     
+                      onTouchStartCapture={(e)=>{
+                        setIsDraggable(false)
+
+                      }}
+                      onTouchEndCapture={(e)=>{
+                        setIsDraggable(true)
                       }}
                         onMouseDown={(e) => {
-                          e.stopPropagation();
+                          e.stopPropagation()
                         }}
                         value={page!.links?.[getIndex(cord.i)].name}
                         maxLength={15}
@@ -434,9 +444,20 @@ const UpdateContainer = () => {
                       />
                       {/* {cord.i} */}
                       <input
+                      
+                      onTouchStartCapture={(e)=>{
+                        setIsDraggable(false)
+
+                      }}
+                      onTouchEnd={(e)=>{
+                        setIsDraggable(true)
+                      }}
                        id={`${i}link`}
+                       onTouchMove={(e)=>{e.stopPropagation();}}
                        onTouchStart={(e)=>{
+                         e.stopPropagation();
                          document.getElementById(`${i}link`)?.focus()
+
                        }}
                        onMouseDown={(e) => {
                         e.stopPropagation();
@@ -462,7 +483,7 @@ const UpdateContainer = () => {
                         deleteLink(cord.i);
                       }}
                     >
-                      <MdDelete  />
+                      <MdDelete  fontSize="0.75em"/>
                     </button>
                   </div>
                 ))}

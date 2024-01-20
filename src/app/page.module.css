@@ -111,7 +111,9 @@ grid-row-gap: 0px;
 .linkBox {
   border-radius: 1em;
   padding: 0.5em;
-  padding-right: 3em;
+  padding-right: 6em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,20 +125,27 @@ grid-row-gap: 0px;
   min-width: 11em;
 }
 .linkBox input {
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
   border-width: 0;
   background-color: rgb(250, 253, 255);
 }
 .linkBox button {
+  border-width: 0em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
 top:-1.5em;
 padding: 0em;
-right:-1.3em;
-min-width:2em;
-min-height:2em;
-max-height: 2em;
+right:-4.4em;
+min-width:1em;
+min-height:1em;
+max-height: 1em;
   border-radius: 100%;
   background-color: #E7BB41;
   font-size: larger;
@@ -242,17 +251,18 @@ width:10em;
   position: fixed;
   background-color: #797367;
   display: flex;
+  gap:0;
   top:0;
   left:0;
   width:100vw;
   height:100vh;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   
 }
 .login-box{
   text-align: center;
-  position: absolute;
   top:1em;
   justify-content: center;
   border-radius: 5em;

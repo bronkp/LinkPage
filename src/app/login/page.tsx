@@ -21,7 +21,9 @@ export default function Home() {
       
       ):(<Signup/>)}
 
-<div style={{color:'white',cursor:"pointer"}} onClick={()=>setView(!view)}>{view?"Signup":"Log In"}</div>
+<p style={{color:'white',}}>{view?"Don't have an account? ":"Have an account? "} <a  onClick={()=>setView(!view)} style={{color:"#3dcbff",cursor:"pointer"}}>{view?"Sign Up":"Login"}</a></p>
+
+
       </div>
 </div>
   </AuthContextProvider>
