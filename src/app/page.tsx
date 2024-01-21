@@ -1,21 +1,16 @@
 "use client";
-import Image from "next/image";
 import styles from "./page.module.css";
 import TreeContainer from "../../components/TreeContainer";
-import Header from "../../components/Header";
 import LinkItem from "../../components/LinkItem";
-import SpecialContainer from "../../components/SpecialContainer";
-import Special from "../../components/Special";
-import Navbar from "../../components/Navbar";
-import AuthContextProvider, { useAuthContext } from "../../context/AuthContext";
+import AuthContextProvider from "../../context/AuthContext";
 import { themes } from "../../utils/themes";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import CheckUser from "../../components/CheckUser";
 import { TreeType } from "../../types/types";
 
 export default function Home() {
-  const [tree,setTree]= useState<TreeType>({
+  //base tree before color is picked so it's already up
+  const [tree, setTree] = useState<TreeType>({
     name: "Welcome!",
     links: [
       { name: "Login", link: "/login" },
@@ -24,16 +19,14 @@ export default function Home() {
     ],
     special_links: [],
     pfp: "",
-    theme:
-      Object.keys(themes)[
-        0
-        
-      ],url:""
-  })
-  
+    theme: Object.keys(themes)[0],
+    url: "",
+  });
+
   const [width, setWidth] = useState(0);
-  
+
   useEffect(() => {
+    //getsview port and device information
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
@@ -50,12 +43,10 @@ export default function Home() {
     } else {
       setWidth(1920);
     }
-    
-  
-
   }, []);
-useEffect(()=>{
- setTree ({
+  useEffect(() => {
+    //setting the color themeing
+    setTree({
       name: "Welcome!",
       links: [
         { name: "Login", link: "/login" },
@@ -66,61 +57,58 @@ useEffect(()=>{
       pfp: "",
       theme:
         Object.keys(themes)[
+          //picks a random theme from the themes object
           Math.floor(Math.random() * Object.keys(themes).length)
-          
-        ],url:""
+        ],
+      url: "",
     });
-
-},[])
+  }, []);
   return (
     <>
-    
-    {/* Basically the tree component but was easier to build a custom version for home screen purposes */}
-     {tree&&
-      <AuthContextProvider>
-        <TreeContainer width={width} demoTree={false}>
-          <CheckUser />
-          <div
-            style={{
-              backgroundColor: themes[tree.theme as keyof typeof themes].runner,
-            }}
-            className={styles["tree-runner"]}
-          ></div>
-          <div
-            style={{
-              top: 0,
-              zIndex: "-2",
-              position: "fixed",
-              width: "100vw",
-              height: "100%",
-              backgroundColor: themes[tree.theme as keyof typeof themes].base,
-            }}
-          ></div>
-          <h1 style={{ marginBottom:"0em", fontSize:"4em",color:themes[tree.theme as keyof typeof themes].headerText}}>Welcome!</h1>
-          {/* <Header
-            width={width}
-            demo={true}
-            theme={tree.theme}
-            pfp={tree.pfp
-            name={tree!.name}
-          /> */}
-          <div style={{ marginTop: "0em", height: "10em" }}></div>
-          {tree?.links.map((link, key) => (
-            <LinkItem
-              demo={false}
-              width={width}
-              theme={themes[tree.theme as keyof typeof themes]}
-              key={key}
-              link={link}
-            />
-          ))}
-          {/* <SpecialContainer>
-            {tree?.special_links?.map((special, key) => (
-              <Special key={key} special={special} />
+      {/* Restrutcted Version of the Tree Component*/}
+      {tree && (
+        <AuthContextProvider>
+          <TreeContainer width={width} demoTree={false}>
+            <CheckUser />
+            <div
+              style={{
+                backgroundColor:
+                  themes[tree.theme as keyof typeof themes].runner,
+              }}
+              className={styles["tree-runner"]}
+            ></div>
+            <div
+              style={{
+                top: 0,
+                zIndex: "-2",
+                position: "fixed",
+                width: "100vw",
+                height: "100%",
+                backgroundColor: themes[tree.theme as keyof typeof themes].base,
+              }}
+            ></div>
+            <h1
+              style={{
+                marginBottom: "0em",
+                fontSize: "4em",
+                color: themes[tree.theme as keyof typeof themes].headerText,
+              }}
+            >
+              Welcome!
+            </h1>
+            <div style={{ marginTop: "0em", height: "10em" }}></div>
+            {tree?.links.map((link, key) => (
+              <LinkItem
+                demo={false}
+                width={width}
+                theme={themes[tree.theme as keyof typeof themes]}
+                key={key}
+                link={link}
+              />
             ))}
-          </SpecialContainer> */}
-        </TreeContainer>
-      </AuthContextProvider>}
+          </TreeContainer>
+        </AuthContextProvider>
+      )}
     </>
   );
 }
