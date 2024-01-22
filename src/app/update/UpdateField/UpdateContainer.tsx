@@ -552,20 +552,7 @@ const UpdateContainer = () => {
                 Save Changes
               </button>
 
-              {/* <button
-                onClick={() =>
-                  console.log(
-                    "Cords",
-                    ogState,
-                    "Inital State",
-                    initLinkOrder,
-                    "Page Links",
-                    page?.links
-                  )
-                }
-              >
-                Debug
-              </button> */}
+             
             </div>
           )}
 
