@@ -14,7 +14,7 @@ const CheckUser:React.FC = () => {
       .insert({
         name: "Click Edit",
         special_links: [],
-        links: [{"link":"","name":"edit me"}],
+        links: [{"link":"/update","name":"edit me"}],
         url: user?.id,
         pfp:user?.id+"/pfp.png",
         email:user?.email,
