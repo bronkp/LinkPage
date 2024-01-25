@@ -13,10 +13,10 @@
 <p>Once logged in click the edit button on the top navbar or go to the <a href="https://link-page-git-main-bronkp.vercel.app/update">update</a> page.</p>
 <p>1. Edit your name which will be displayed as your page header. Then decide your desired url. If avaible, your page will be found at /page/{your url}</p>
 <img src="https://i.imgur.com/bCj0DN0.png" title="source: imgur.com" />
-<p>2. Now add some links! Give the name of what you're linking to. Then give its actual url. Drag them around in the order you'd like them to be displayed in.</p>
+<p>2. Now add some links. Give the name of what you're linking to. Then give its actual url. Drag them around in the order you'd like them to be displayed in.</p>
 <img src="https://i.imgur.com/AcufAjT.png" title="source: imgur.com" />
 <p>3. Click to add a profile picture for your page.</p>
 <img src="https://i.imgur.com/sfKaafJ.png" title="source: imgur.com" />
 <p>4. Click a color option on the side and find a theme that best fits your page.</p>
 <img src="https://i.imgur.com/5gmADj3.png" title="source: imgur.com" />
-<p>Then just save your changes and see your new page!</p>
+<p>Then just save your changes and see your new page.</p>
