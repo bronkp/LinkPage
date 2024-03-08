@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react'
 import { useAuthContext } from '../../../context/AuthContext'
 import styles from '@/app/page.module.css';
