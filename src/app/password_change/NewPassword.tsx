@@ -10,6 +10,7 @@ const NewPassword:React.FC = () => {
     const [error,setError]=useState(false)
     const context = useAuthContext()
     const changePassword = async()=>{
+      await context.client!.auth.refreshSession()
         const { data, error } = await context.client!.auth.updateUser({
 
             password: password
