@@ -14,6 +14,7 @@ const NewPassword:React.FC = () => {
             password: password
           
           })
+          console.log(data,error)
           if(error){
             setError(true)
           }else{
